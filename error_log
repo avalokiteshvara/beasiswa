@@ -1,0 +1,20 @@
+[25-Aug-2022 15:22:22 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: MY_Exceptions::exception_handler(): Argument #1 ($e) must be of type Exception, TypeError given in /home/unic5432/public_html/beasiswa/application/core/MY_Exceptions.php:146
+Stack trace:
+#0 [internal function]: MY_Exceptions::exception_handler(Object(TypeError))
+#1 {main}
+  thrown in /home/unic5432/public_html/beasiswa/application/core/MY_Exceptions.php on line 146
+[25-Aug-2022 15:22:28 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: MY_Exceptions::exception_handler(): Argument #1 ($e) must be of type Exception, TypeError given in /home/unic5432/public_html/beasiswa/application/core/MY_Exceptions.php:146
+Stack trace:
+#0 [internal function]: MY_Exceptions::exception_handler(Object(TypeError))
+#1 {main}
+  thrown in /home/unic5432/public_html/beasiswa/application/core/MY_Exceptions.php on line 146
+[25-Aug-2022 15:24:48 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: MY_Exceptions::exception_handler(): Argument #1 ($e) must be of type Exception, TypeError given in /home/unic5432/public_html/beasiswa/application/core/MY_Exceptions.php:146
+Stack trace:
+#0 [internal function]: MY_Exceptions::exception_handler(Object(TypeError))
+#1 {main}
+  thrown in /home/unic5432/public_html/beasiswa/application/core/MY_Exceptions.php on line 146
+[25-Aug-2022 15:24:51 Asia/Jakarta] PHP Fatal error:  Uncaught TypeError: MY_Exceptions::exception_handler(): Argument #1 ($e) must be of type Exception, TypeError given in /home/unic5432/public_html/beasiswa/application/core/MY_Exceptions.php:146
+Stack trace:
+#0 [internal function]: MY_Exceptions::exception_handler(Object(TypeError))
+#1 {main}
+  thrown in /home/unic5432/public_html/beasiswa/application/core/MY_Exceptions.php on line 146

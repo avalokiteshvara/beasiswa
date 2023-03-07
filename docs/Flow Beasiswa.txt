@@ -1,0 +1,14 @@
+1. Beasiswa untuk D3, S1 dibuat 2 kategori
+   - beasiswa mahasiswa tidak mampu (bobot 70% dari quota)
+   - beasiswa mahasiswa umum (bobot 30% dari quota)
+   - syarat upload dokumen, saya lampirkan
+
+2. Beasiswa s3 dibuat 2 kategori
+   - Beasiswa Dalam Negeri (Kuliah dalam negeri)
+   - Beasiswa Luar Negeri (Kuliah diluar Negeri)
+   - Wajib Ber NIDN/NIDK/NUP
+
+3. Tidak memakai pembobotan lagi
+4. Kelompok IPA dan IPS dihilangkan
+5. Pendaftar Wajib NIK Provinsi Jambi
+6. Template Front dan Back end sya lampirkan
