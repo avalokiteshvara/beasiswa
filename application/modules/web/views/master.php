@@ -133,6 +133,23 @@
             /* height: 50px; */
             width: 110px;
         }
+
+
+        .section-title h2 {
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 3px;
+            background: #aabbd7;
+            bottom: 0;
+            left: 0;
+        }
     </style>
 </head>
 
@@ -1220,7 +1237,7 @@
 
                         </div>
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary btn-block" name="submit" value="reset-password">Reset Password</button>
+                            <button type="submit" class="btn btn-danger btn-block" name="submit" value="reset-password">Reset Password</button>
                         </div>
                     </form>
                 </div>
