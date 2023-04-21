@@ -119,7 +119,18 @@
                   $(next).select();
                } else {
                   if (parent.data('autosubmit')) {
-                     parent.submit();
+                     //parent.submit();
+                     var isFilled = true;
+                     parent.find('input').each(function() {
+                        if ($(this).val() == '') {
+                           isFilled = false;
+                        }
+                     });
+
+                     if (isFilled) {
+                        // semua input teks terisi, submit formulir
+                        parent.submit();
+                     } 
                   }
                }
             }
