@@ -134,7 +134,9 @@ class Api extends CI_Controller
         }
 
         $this->datatables->from('pendaftar');
-        $this->datatables->where('kategori_id', $filter_kat);
+        if ($filter_kat) {
+            $this->datatables->where('kategori_id', $filter_kat);
+        }
         $this->datatables->where('status', 'diterima');
         $this->datatables->like("DATE_FORMAT(created_at, '%d-%m-%Y %H:%i:%s')", $this->tahun_aktif);
         // $this->datatables->order_by('ip_semester', 'desc');
@@ -169,7 +171,9 @@ class Api extends CI_Controller
         }
 
         $this->datatables->from('pendaftar');
-        $this->datatables->where('kategori_id', $filter_kat);
+        if ($filter_kat) {
+            $this->datatables->where('kategori_id', $filter_kat);
+        }
         $this->datatables->where('status_akhir', 'diterima');
         $this->datatables->like("DATE_FORMAT(created_at, '%d-%m-%Y %H:%i:%s')", $this->tahun_aktif);
         // $this->datatables->order_by('ip_semester', 'desc');
