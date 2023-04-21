@@ -1,0 +1,11 @@
+{
+    "require": {
+        "vlucas/phpdotenv": "5.5.0",
+        "phpmailer/phpmailer": "^6.8",
+        "league/oauth2-google": "^4.0",
+        "mpdf/mpdf": "v8.0.13",
+        "phpoffice/phpspreadsheet": "^1.28",
+        "coffeecode/cropper": "^2.0",
+        "barcode-bakery/barcode-1d": "^7.0"
+    }
+}
