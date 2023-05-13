@@ -194,9 +194,7 @@ class Verifikator extends MX_Controller
                 $count_pendaftar = $this->db->count_all_results('pendaftar');
 
                 //pendaftar tahun ini
-                $pendaftar = '<a href="' . site_url('verifikator/pendaftar_ajax/' . $row->slug) . '">' . $count_pendaftar . ' Pendaftar </a>';
-
-                return $pendaftar;
+                return  '<a href="' . site_url('verifikator/pendaftar_ajax/' . $row->slug) . '">' . $count_pendaftar . ' Pendaftar </a>';
             });
 
             $crud->unset_add();
@@ -259,15 +257,29 @@ class Verifikator extends MX_Controller
         }
 
 
-        $this->db->select('b.nama, a.file_dokumen');
-        $this->db->join('jenis_dokumen b', 'a.jenis_dokumen_id = b.id', 'left');
+        $this->db->select('a.alasan,b.no_hp as no_hp,c.nama AS nama_dok');
+        $this->db->join('pendaftar b', 'a.pendaftar_id = b.id', 'left');
+        $this->db->join('jenis_dokumen c', 'a.jenis_dokumen_id = c.id', 'left');
         $this->db->where('a.id', $dokumen_pendaftar_id);
-        $msg = $this->db->get('dokumen_pendaftar a')->row_array();
+        $pendaftar = $this->db->get('dokumen_pendaftar a')->row_array();
 
+
+        $no_hp = $pendaftar['no_hp'];
+        $nama_dok = $pendaftar['nama_dok'];
+        $alasan = $pendaftar['alasan'];
 
         if ($verifikasi === 'diterima') {
+            $message = "Berkas : " . $nama_dok . " berhasil diverifikasi";
+            sendWa($no_hp, $message);
+
             echo '<span class="badge bg-success">Diterima</span>';
         } else {
+
+            $message = "Berkas : " . $nama_dok . " DITOLAK .";
+            $message .= "Catatan: " . $alasan . ", ";
+            $message .= "segera lakukan perbaikan berkas";
+            sendWa($no_hp, $message);
+
             echo '<span class="badge bg-danger">Ditolak</span>';
         }
     }
@@ -294,8 +306,8 @@ class Verifikator extends MX_Controller
                         $this->alert->set('alert-danger', 'Password baru & ulangan harus sama');
                         redirect(site_url('verifikator/ganti-password'), 'reload');
                     } else {
-                        $realname = $this->input->post('realname');
-                        $email    = $this->input->post('email');
+                        // $realname = $this->input->post('realname');
+                        // $email    = $this->input->post('email');
 
                         $this->db->where('id', $user_id);
                         $this->db->update('user', array('password' => md5($pass_ulangi)));
