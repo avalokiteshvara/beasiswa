@@ -901,8 +901,8 @@ class Admin extends MX_Controller
                         $this->alert->set('alert-danger', 'Password baru & ulangan harus sama');
                         redirect(site_url('admin/ganti-password'), 'reload');
                     } else {
-                        $realname = $this->input->post('realname');
-                        $email    = $this->input->post('email');
+                        // $realname = $this->input->post('realname');
+                        // $email    = $this->input->post('email');
 
                         $this->db->where('id', $user_id);
                         $this->db->update('user', array('password' => md5($pass_ulangi)));
@@ -1005,7 +1005,7 @@ class Admin extends MX_Controller
 
                 $this->datatables->select(
                     "a.email,a.id,a.nik,a.nama_lengkap, a.alamat_rumah,a.kab_kota, a.jk, a.nama_lembaga, a.kelas,
-             a.semester, a.`status`, GROUP_CONCAT(CONCAT(c.id,'|', REPLACE(b.file_dokumen,a.nik,'') ,'|',b.verifikasi) SEPARATOR ';') AS dokumen"
+                     a.semester, a.`status`, GROUP_CONCAT(CONCAT(c.id,'|', REPLACE(b.file_dokumen,a.nik,'') ,'|',b.verifikasi) SEPARATOR ';') AS dokumen"
                 );
 
                 $this->db->from('pendaftar a');
@@ -1020,41 +1020,32 @@ class Admin extends MX_Controller
                 //dokumen,status,ubah_email,hapus
                 $this->datatables->select(
                     "  a.id,CONCAT('tr_',a.id) AS DT_RowId,
-             a.nik,
-             UPPER(a.nama_lengkap) AS nama_lengkap,
-             UPPER(a.kab_kota) AS kab_kota,
-             UPPER(a.jk) AS jk,
-             UPPER(a.nama_lembaga) AS nama_lembaga,
-             UPPER(a.program_studi) AS program_studi,
-             a.akreditasi,
-             a.semester,
-             a.ip_semester,
-             CONCAT(
-                  LPAD(CAST((SELECT COUNT(*) FROM `dokumen_pendaftar` WHERE `pendaftar_id` = `a`.`id`) AS UNSIGNED),2,'0'),
-                  '-',
-                  LPAD(CAST((SELECT COUNT(*) FROM `dokumen_pendaftar` WHERE `pendaftar_id` = `a`.`id` AND `verifikasi` = 'diterima') AS UNSIGNED),2,'0'),
-                  '-',
-                  LPAD(CAST((SELECT COUNT(*) FROM `dokumen_pendaftar` WHERE `pendaftar_id` = `a`.`id` AND `verifikasi` = 'ditolak') AS UNSIGNED),2,'0')
-              ) AS `dokumen`,
+                    a.nik,
+                    UPPER(a.nama_lengkap) AS nama_lengkap,
+                    UPPER(a.kab_kota) AS kab_kota,
+                    UPPER(a.jk) AS jk,
+                    UPPER(a.nama_lembaga) AS nama_lembaga,
+                    UPPER(a.program_studi) AS program_studi,
+                    a.akreditasi,
+                    a.semester,
+                    a.ip_semester,
+                    CONCAT(
+                        LPAD(CAST((SELECT COUNT(*) FROM `dokumen_pendaftar` WHERE `pendaftar_id` = `a`.`id`) AS UNSIGNED),2,'0'),
+                        '-',
+                        LPAD(CAST((SELECT COUNT(*) FROM `dokumen_pendaftar` WHERE `pendaftar_id` = `a`.`id` AND `verifikasi` = 'diterima') AS UNSIGNED),2,'0'),
+                        '-',
+                        LPAD(CAST((SELECT COUNT(*) FROM `dokumen_pendaftar` WHERE `pendaftar_id` = `a`.`id` AND `verifikasi` = 'ditolak') AS UNSIGNED),2,'0')
+                    ) AS `dokumen`,
 
-             a.status,
-             a.status_akhir,
-             a.email,
-             DATE_FORMAT(`a`.`created_at`,'%d-%m-%Y %H:%i:%s') AS `tgl_daftar`,
-             a.kategori_id"
+                    a.status,
+                    a.status_akhir,
+                    a.email,
+                    DATE_FORMAT(`a`.`created_at`,'%d-%m-%Y %H:%i:%s') AS `tgl_daftar`,
+                    a.kategori_id"
                 );
-                // $this->datatables->add_column('nama_lengkap','$1','callback_nama("pendaftar_id")');
-                // $this->datatables->add_column('dokumen','$1','callback_dokumen("pendaftar_id")');
-                // $this->datatables->add_column('status','callback_status($1)','id');
-                // $this->datatables->add_column('ubah_email','<a href="#" class="ubah_email alert-info" id="ubah_email_$1" onclick="show_ubah_email(\'$1\')">$2</a>','nik,email');
-                // $this->datatables->add_column('hapus','<a class="alert alert-danger" onclick="hapus_pendaftaran($1)">HAPUS</a>','pendaftar_id');
 
                 $this->datatables->from('pendaftar a');
                 $this->datatables->group_by('a.id');
-                // $this->datatables->join('dokumen_pendaftar b','a.id = b.pendaftar_id','left');
-                // $this->datatables->join('dokumen_pendaftar c','a.id = c.pendaftar_id AND c.verifikasi = "diterima"','left');
-                // $this->datatables->join('dokumen_pendaftar d','a.id = d.pendaftar_id AND d.verifikasi = "ditolak"','left');
-                // $this->datatables->group_by('a.id');
                 $this->datatables->where('kategori_id', $kategori['id']);
                 $this->datatables->not_like("DATE_FORMAT(a.created_at,'%d-%m-%Y %H:%i:%s')", $this->tahun_aktif);
                 $this->datatables->where('status_akhir', 'diterima');

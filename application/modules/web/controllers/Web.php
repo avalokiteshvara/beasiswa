@@ -397,7 +397,7 @@ class Web extends CI_Controller
         // $data['kat'] = $this->db->get('kategori');
 
         $this->load->view('web/master.php', $data);
-        // compress_output();
+        compress_output();
     }
 
     public function get_question_reply()

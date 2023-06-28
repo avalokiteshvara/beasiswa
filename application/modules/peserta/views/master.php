@@ -10,7 +10,7 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/favicon.ico" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
@@ -88,10 +88,10 @@
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
                 <img src="assets/img/logo.png" alt="">
-                <span class="d-none d-lg-block">Peserta</span>
+                <span class="d-none d-lg-block"><i class="bi bi-person-bounding-box"></i> Hi, <?php echo strtoupper(fullNameToFirstName($this->session->userdata('user_nama_lengkap'))) ?></span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
-            <?php echo strtoupper('Peserta ' . $kat_beasiswa); ?>
+            <b><?php echo strtoupper('Peserta ' . $kat_beasiswa); ?></b>
         </div><!-- End Logo -->
 
 
@@ -116,7 +116,7 @@
                             <img src="<?php echo site_url('uploads/foto/' . $file_foto) ?>" alt="Profile" class="rounded-circle">
                         <?php } ?>
 
-                        <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $this->session->userdata('user_nama_lengkap'); ?></span>
+                        <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo fullNameToFirstName($this->session->userdata('user_nama_lengkap')); ?></span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -159,16 +159,16 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="<?php echo site_url('peserta') ?>">
-                    <i class="bi bi-grid"></i>
+                    <i class="bi bi-person-vcard-fill"></i>
                     <span>Biodata</span>
                 </a>
                 <a class="nav-link collapsed" href="<?php echo site_url('peserta/dokumen') ?>">
-                    <i class="bi bi-grid"></i>
+                    <i class="bi bi-briefcase-fill"></i>
                     <span>Dokumen</span>
                 </a>
 
                 <a class="nav-link collapsed" href="<?php echo site_url('peserta/pertanyaan') ?>">
-                    <i class="bi bi-grid"></i>
+                    <i class="bi bi-chat-left-text-fill"></i>
                     <span>Pertanyaan</span>
                 </a>
             </li><!-- End Dashboard Nav -->
@@ -238,11 +238,12 @@
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer">
+       <footer id="footer" class="footer">
         <div class="copyright">
-            <p align="center">&copy;<strong><span>
-                        <font size="2"> Biro Kesra Provinsi Jambi. 2023
-                    </span></strong></font>
+                <font size="2"><p align="center">Hak Cipta &copy; 2023.<span>
+                        <a href="https://kesra.jambiprov.go.id/">Biro Kesejahteraan Masyarakat Provinsi Jambi.</a> All right reserved.
+                    </span></font></br>
+                    <font size="2">Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>. Developed and Supported by <a href="https://disdik.jambiprov.go.id/">BTIKP Dinas Pendidikan Provinsi Jambi</a></font>
             </p>
         </div>
         <div class="credits">
@@ -250,7 +251,7 @@
             <!-- You can delete the links only if you purchased the pro version. -->
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+           
         </div>
     </footer><!-- End Footer -->
 

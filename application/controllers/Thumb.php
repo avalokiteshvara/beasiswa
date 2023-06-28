@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 
 /*
@@ -16,16 +16,37 @@ define('SHARPEN_MAX',           28);            // Maximum sharpen value
 define('ADJUST_ORIENTATION',    true);          // Auto adjust orientation for JPEG true or false
 define('JPEG_QUALITY',          100);           // Quality of generated JPEGs (0 - 100; 100 being best)
 
-$src = isset($_GET['src']) ? $_GET['src'] : false;
-$size = isset($_GET['size']) ? str_replace(array('<', 'x'), '', $_GET['size']) != '' ? $_GET['size'] : 100 : 100;
-$crop = isset($_GET['crop']) ? max(0, min(1, $_GET['crop'])) : 1;
-$trim = isset($_GET['trim']) ? max(0, min(1, $_GET['trim'])) : 0;
-$zoom = isset($_GET['zoom']) ? max(0, min(1, $_GET['zoom'])) : 0;
-$align = isset($_GET['align']) ? $_GET['align'] : false;
-$sharpen = isset($_GET['sharpen']) ? max(0, min(100, $_GET['sharpen'])) : 0;
-$gray = isset($_GET['gray']) ? max(0, min(1, $_GET['gray'])) : 0;
-$ignore = isset($_GET['ignore']) ? max(0, min(1, $_GET['ignore'])) : 0;
+// $src = isset($_GET['src']) ? $_GET['src'] : false;
+// $size = isset($_GET['size']) ? str_replace(array('<', 'x'), '', $_GET['size']) != '' ? $_GET['size'] : 100 : 100;
+// $crop = isset($_GET['crop']) ? max(0, min(1, $_GET['crop'])) : 1;
+// $trim = isset($_GET['trim']) ? max(0, min(1, $_GET['trim'])) : 0;
+// $zoom = isset($_GET['zoom']) ? max(0, min(1, $_GET['zoom'])) : 0;
+// $align = isset($_GET['align']) ? $_GET['align'] : false;
+// $sharpen = isset($_GET['sharpen']) ? max(0, min(100, $_GET['sharpen'])) : 0;
+// $gray = isset($_GET['gray']) ? max(0, min(1, $_GET['gray'])) : 0;
+// $ignore = isset($_GET['ignore']) ? max(0, min(1, $_GET['ignore'])) : 0;
+// $path = parse_url($src);
+
+
+$src = $_GET['src'] ?? false;
+$size = $_GET['size'] ?? 100;
+$size = is_numeric($size) ? $size : 100;
+$crop = $_GET['crop'] ?? 1;
+$crop = max(0, min(1, $crop));
+$trim = $_GET['trim'] ?? 0;
+$trim = max(0, min(1, $trim));
+$zoom = $_GET['zoom'] ?? 0;
+$zoom = max(0, min(1, $zoom));
+$align = $_GET['align'] ?? false;
+$sharpen = $_GET['sharpen'] ?? 0;
+$sharpen = max(0, min(100, $sharpen));
+$gray = $_GET['gray'] ?? 0;
+$gray = max(0, min(1, $gray));
+$ignore = $_GET['ignore'] ?? 0;
+$ignore = max(0, min(1, $ignore));
+
 $path = parse_url($src);
+
 
 if (isset($path['scheme'])) {
     $base = parse_url('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
@@ -68,7 +89,7 @@ $file_size = filesize($src);
 $file_time = filemtime($src);
 $file_date = gmdate('D, d M Y H:i:s T', $file_time);
 $file_type = strtolower(substr(strrchr($src, '.'), 1));
-$file_hash = md5($file_salt . ($src.$size.$crop.$trim.$zoom.$align.$sharpen.$gray.$ignore) . $file_time);
+$file_hash = md5($file_salt . ($src . $size . $crop . $trim . $zoom . $align . $sharpen . $gray . $ignore) . $file_time);
 $file_temp = THUMB_CACHE . $file_hash . '.img.txt';
 $file_name = basename(substr($src, 0, strrpos($src, '.')) . strtolower(strrchr($src, '.')));
 
@@ -175,7 +196,7 @@ if (!file_exists($file_temp)) {
             }
         }
     }
-    list($w,$h) = explode('x', str_replace('<', '', $size) . 'x');
+    list($w, $h) = explode('x', str_replace('<', '', $size) . 'x');
     $w = ($w != '') ? floor(max(8, min(1500, $w))) : '';
     $h = ($h != '') ? floor(max(8, min(1500, $h))) : '';
     if (strstr($size, '<')) {
@@ -216,10 +237,11 @@ if (!file_exists($file_temp)) {
     $w = ($trim_w) ? (($w0 / $h0) > ($w / $h)) ? min($w, $w1) : $w1 : $w;
     $h = ($trim_h) ? (($w0 / $h0) < ($w / $h)) ? min($h, $h1) : $h1 : $h;
     if ($sharpen) {
-        $matrix = array (
+        $matrix = array(
             array(-1, -1, -1),
             array(-1, SHARPEN_MAX - ($sharpen * (SHARPEN_MAX - SHARPEN_MIN)) / 100, -1),
-            array(-1, -1, -1));
+            array(-1, -1, -1)
+        );
         $divisor = array_sum(array_map('array_sum', $matrix));
     }
     $x = strpos($align, 'l') !== false ? 0 : (strpos($align, 'r') !== false ? $w - $w1 : ($w - $w1) / 2);

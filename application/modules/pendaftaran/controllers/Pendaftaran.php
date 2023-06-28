@@ -226,6 +226,8 @@ class Pendaftaran extends CI_Controller
                     // $response = array('success' => true);
 
                     $level_penerima = $data['detail']['level_penerima'];
+
+                    //pelajar
                     if ($level_penerima === 'pelajar') {
 
                         if ($response['success']) {
@@ -381,6 +383,6 @@ class Pendaftaran extends CI_Controller
         }
 
         $this->load->view('master', $data);
-        // compress_output();
+        compress_output();
     }
 }

@@ -46,7 +46,8 @@
                   <script>
                     CKEDITOR.on('instanceCreated', function(e) {
                       e.editor.on('change', function(event) {
-                        var this_val = CKEDITOR.instances['<?php echo $r->title; ?>'].getData(); //Value of Editor
+                        
+                        var this_val = CKEDITOR.instances['<?php echo $r->id; ?>'].getData(); //Value of Editor
                         var this_title = '<?php echo $r->title; ?>';
 
                         $.post("<?php echo base_url() . 'admin/settings/edt-value/'; ?>" + this_title, {

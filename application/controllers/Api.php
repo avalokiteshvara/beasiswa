@@ -139,11 +139,7 @@ class Api extends CI_Controller
         }
         $this->datatables->where('status', 'diterima');
         $this->datatables->like("DATE_FORMAT(created_at, '%d-%m-%Y %H:%i:%s')", $this->tahun_aktif);
-        // $this->datatables->order_by('ip_semester', 'desc');
-        // $this->datatables->order_by('akreditasi', 'asc');
-        // $this->datatables->order_by('created_at', 'asc');
-
-
+       
         echo $this->datatables->generate();
     }
 
@@ -176,10 +172,7 @@ class Api extends CI_Controller
         }
         $this->datatables->where('status_akhir', 'diterima');
         $this->datatables->like("DATE_FORMAT(created_at, '%d-%m-%Y %H:%i:%s')", $this->tahun_aktif);
-        // $this->datatables->order_by('ip_semester', 'desc');
-        // $this->datatables->order_by('akreditasi', 'asc');
-        // $this->datatables->order_by('created_at', 'asc');
-
+       
 
         echo $this->datatables->generate();
     }

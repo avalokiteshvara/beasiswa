@@ -161,7 +161,7 @@
           <i class="fa fa-bars"></i>
         </button>
         <a class="navbar-brand page-scroll" href="<?php echo site_url('web') ?>">
-          <i class="fa fa-play-circle"></i> <span class="light">Sistem Beasiswa</span> Provinsi Jambi 2018
+          <i class="fa fa-play-circle"></i> <span class="light">Sistem Beasiswa</span> Provinsi Jambi
         </a>
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -204,7 +204,7 @@
               </ul>
 
               <div class="alert alert-danger text-center" role="alert" id="alert-tutup">
-                <h3 style="margin-bottom: 0%;">Pendaftaran telah ditutup.</h3>
+                <h3 style="margin-bottom: 0%;">Pendaftaran ditutup.</h3>
               </div>
 
               <div class="tab-content clearfix">
@@ -666,7 +666,7 @@
   </section>
   <footer>
     <div class="container text-center">
-      Copyright <a href="http://disdik.jambiprov.go.id/">Dinas Pendidikan Provinsi Jambi</a>
+      <span style="color:#ffffff">Copyright ©</span> <a href="https://kesra.jambiprov.go.id/">Biro Kesra Prov. Jambi</a>
     </div>
   </footer>
 

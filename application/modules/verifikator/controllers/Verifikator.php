@@ -269,8 +269,8 @@ class Verifikator extends MX_Controller
         $alasan = $pendaftar['alasan'];
 
         if ($verifikasi === 'diterima') {
-            $message = "Berkas : " . $nama_dok . " berhasil diverifikasi";
-            sendWa($no_hp, $message);
+            // $message = "Berkas : " . $nama_dok . " berhasil diverifikasi";
+            // sendWa($no_hp, $message);
 
             echo '<span class="badge bg-success">Diterima</span>';
         } else {

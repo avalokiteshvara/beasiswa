@@ -1,16 +1,10 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
-
-use League\OAuth2\Client\Provider\Google;
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-use BarcodeBakery\Common\BCGFontFile;
+use BarcodeBakery\Barcode\BCGcode39;
 use BarcodeBakery\Common\BCGColor;
 use BarcodeBakery\Common\BCGDrawing;
-use BarcodeBakery\Barcode\BCGcode39;
-
-
+use BarcodeBakery\Common\BCGFontFile;
+use PHPMailer\PHPMailer\PHPMailer;
 
 function get_settings($collumn, $title)
 {
@@ -22,7 +16,7 @@ function get_settings($collumn, $title)
     if ($collumn === 'show') {
         $result_array = explode(';', $setting->show);
         $result       = $result_array[1];
-    } elseif($collumn === 'value-option'){
+    } elseif ($collumn === 'value-option') {
         $result_array = explode(';', $setting->value);
         $result       = $result_array[1];
     } else {
@@ -41,7 +35,7 @@ function jenis_dokumen($id)
 
 function generate_barcode($file_name, $barcode_text, $scale = 2, $fontsize = 18, $thickness = 30)
 {
-    $font = new BCGFontFile(APPPATH . 'libraries/font/Arial.ttf', $fontsize);
+    $font       = new BCGFontFile(APPPATH . 'libraries/font/Arial.ttf', $fontsize);
     $colorBlack = new BCGColor(0, 0, 0);
     $colorWhite = new BCGColor(255, 255, 255);
 
@@ -62,10 +56,10 @@ function generate_barcode($file_name, $barcode_text, $scale = 2, $fontsize = 18,
 
     $filename_barcode = FCPATH . 'uploads/barcode/' . $file_name . '.png';
 
-    $drawing->finish(BCGDrawing::IMG_FORMAT_PNG,$filename_barcode);
+    $drawing->finish(BCGDrawing::IMG_FORMAT_PNG, $filename_barcode);
 
     // var_dump($drawing);
-    return $file_name . '.png';    
+    return $file_name . '.png';
 }
 
 function bukti_dapat_beasiswa($pendaftar_id, $download = false)
@@ -151,15 +145,12 @@ function instrumen_verifikasi($pendaftar_id, $download = false)
 
     $pendaftar = $cek->row_array();
 
-    
-
     $document->setValue('NOMOR_REGISTRASI', $pendaftar['nomor_registrasi']);
     $document->setValue('NAMA', strtoupper($pendaftar['nama_lengkap']));
     $document->setValue('KATEGORI_BEASISWA', $pendaftar['kategori_beasiswa']);
 
     $barcode_file = generate_barcode($pendaftar['nomor_identitas'], $pendaftar['nomor_identitas']);
 
-   
     $barcode = array(
         array(
             'img'  => FCPATH . "uploads/barcode/" . $barcode_file,
@@ -342,9 +333,6 @@ function slugify($text)
 
     return $text;
 }
-
-
-
 
 //https://www.geeksforgeeks.org/generating-otp-one-time-password-in-php/
 function generateNumericOTP($n = 10)
@@ -572,7 +560,7 @@ function filterHtml($input)
         foreach ($blocks as $block) {
             $position = strpos($input, $placeholder, $position);
             if ($position === false) {
-                throw new \RuntimeException("Found too many placeholders of type $tag in input string");
+                throw new \RuntimeException ("Found too many placeholders of type $tag in input string");
             }
             $input = substr_replace($input, $block, $position, $placeholderLength);
         }
@@ -646,12 +634,11 @@ if (!function_exists('hide_nik')) {
     }
 }
 
-
 if (!function_exists('load_image')) {
     function load_image($image_path, $width, $height, $zoom = 1, $crop = 1)
     {
         if (is_file($image_path)) {
-            $c = new \CoffeeCode\Cropper\Cropper("./cache");
+            $c = new \CoffeeCode\Cropper\Cropper ("./cache");
             return $c->make($image_path, $width, $height);
 
             //return site_url('thumb?src=' . site_url($image_path) . '&size=' . $width . 'x' . $height . '&zoom=' . $zoom . '&crop=' . $crop);
@@ -703,7 +690,6 @@ if (!function_exists('convert_date_to_sql_date')) {
     }
 }
 
-
 if (!function_exists('get_comment_reply_count')) {
     function get_comment_reply_count($comment_id)
     {
@@ -724,7 +710,7 @@ if (!function_exists('sendWa')) {
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, '{"instance_key": "' . $_ENV['WHATSVA_INSTANCE_KEY'] . '", "jid": "' . $jid . '", "message": "' . $msg . '"}');
 
-        $headers = array();
+        $headers   = array();
         $headers[] = 'Content-Type: application/json';
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
@@ -740,88 +726,133 @@ if (!function_exists('sendWa')) {
     }
 }
 
-if (!function_exists('sendEmail')) {
+function fullNameToFirstName($fullName, $checkFirstNameLength=TRUE)
+{
+	// Split out name so we can quickly grab the first name part
+	$nameParts = explode(' ', $fullName);
+	$firstName = $nameParts[0];
 
-    function sendEmail($recipientEmailAddress, $subject, $message, $attachment = 'none')
-    {
-        $provider = new Google([
-            'clientId'     => $_ENV['GOOGLE_CLIENTID'],
-            'clientSecret' => $_ENV['GOOGLE_CLIENTSECRET'],
-            'redirectUri'  => 'https://example.com/callback-url',
-        ]);
+	// If the first part of the name is a prefix, then find the name differently
+	if(in_array(strtolower($firstName), array('mr', 'ms', 'mrs', 'miss', 'dr'))) {
+		if($nameParts[2]!='') {
+			// E.g. Mr James Smith -> James
+			$firstName = $nameParts[1];
+		} else {
+			// e.g. Mr Smith (no first name given)
+			$firstName = $fullName;
+		}
+	}
 
-        $mail = new PHPMailer(true);
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';  //gmail SMTP server
-        $mail->SMTPAuth = true;
-        //to view proper logging details for success and error messages
-        // $mail->SMTPDebug = 1;
-        $mail->Host = 'smtp.gmail.com';  //gmail SMTP server
-        $mail->Username = $_ENV['GMAIL_USER'];   //email
-        $mail->Password = $_ENV['GMAIL_APP_PASSWORD'];   //16 character obtained from app password created
-        $mail->Port = 465;                    //SMTP port
-        $mail->SMTPSecure = "ssl";
-
-        //sender information
-        $mail->setFrom($_ENV['GMAIL_USER'], 'Admin');
-
-        //receiver email address and name
-        $mail->addAddress($recipientEmailAddress, $recipientEmailAddress);
-        if ($attachment !== 'none') {
-            $mail->AddAttachment($attachment);
-        }
-
-        // Add cc or bcc   
-        // $mail->addCC('email@mail.com');  
-        // $mail->addBCC('user@mail.com');  
-
-
-        $mail->isHTML(true);
-
-        $mail->Subject = $subject;
-        $mail->Body    = $message;
-
-        // Send mail   
-        if (!$mail->send()) {
-            echo 'Email not sent an error was encountered: ' . $mail->ErrorInfo;
-        } else {
-            //echo 'Message has been sent.';
-        }
-
-        $mail->smtpClose();
-    }
-
-    // function sendEmail($recipientEmailAddress, $subject, $message, $attachment)
-    // {
-    //     $CI = &get_instance();
-    //     $CI->load->library('My_PHPMailer');
-
-    //     $mail = new PHPMailer();
-
-    //     // $mail->SMTPDebug = 3;
-
-    //     $mail->isSMTP();
-    //     $mail->Host       = 'smtp.gmail.com';
-    //     $mail->Port       = 587;
-    //     $mail->SMTPSecure = 'tls';
-    //     $mail->SMTPAuth   = true;
-
-    //     $mail->Username = $CI->config->item('mail_Username');
-    //     $mail->Password = $CI->config->item('mail_Password');
-    //     $mail->setFrom($CI->config->item('mail_Username'), $CI->config->item('mail_setFrom'));
-    //     $mail->addReplyTo($CI->config->item('mail_Username'), $CI->config->item('mail_setFrom'));
-    //     $mail->addAddress($recipientEmailAddress, preg_replace('/@.*?$/', '', $recipientEmailAddress));
-    //     if ($attachment !== 'none') {$mail->AddAttachment($attachment);}
-    //     $mail->Subject = $subject;
-    //     $mail->msgHTML($message);
-
-    //     if (!$mail->send()) {
-    //         //return false;
-    //         //echo 'Message could not be sent.';
-    //         echo 'Mailer Error: <pre>' . $mail->ErrorInfo . '</pre>';
-    //         //exit(0);
-    //     }
-
-    //     //return true;
-    // }
+	// make sure the first name is not just "J", e.g. "J Smith" or "Mr J Smith" or even "Mr J. Smith"
+	if($checkFirstNameLength && strlen($firstName)<3) {
+		$firstName = $fullName;
+	}
+	return $firstName;
 }
+
+function sendEmail($recipient, $subject, $content)
+{
+        $api_token  = $_ENV['MAILKETING_API_TOKEN'];
+        $from_name  = 'Admin Beasiswa'; //nama pengirim
+        $from_email = 'beasiswakesraprovjambi@gmail.com'; //email pengirim
+        
+        $params     = [
+            'from_name'  => $from_name,
+            'from_email' => $from_email,
+            'recipient'  => $recipient,
+            'subject'    => $subject,
+            'content'    => $content,           
+            'api_token'  => $api_token,
+        ];
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://api.mailketing.co.id/api/v1/send");
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $output = curl_exec($ch);
+        print_r($output);
+        curl_close($ch);
+    
+}
+
+// function sendEmail($recipientEmailAddress, $subject, $message, $attachment = 'none')
+// {
+//     $provider = new Google([
+//         'clientId'     => $_ENV['GOOGLE_CLIENTID'],
+//         'clientSecret' => $_ENV['GOOGLE_CLIENTSECRET'],
+//         'redirectUri'  => 'https://example.com/callback-url',
+//     ]);
+
+//     $mail = new PHPMailer(true);
+//     $mail->isSMTP();
+//     $mail->Host = 'smtp.gmail.com';  //gmail SMTP server
+//     $mail->SMTPAuth = true;
+//     //to view proper logging details for success and error messages
+//     // $mail->SMTPDebug = 1;
+//     // $mail->Host = 'smtp.gmail.com';  //gmail SMTP server
+//     $mail->Username = $_ENV['GMAIL_USER'];   //email
+//     $mail->Password = $_ENV['GMAIL_APP_PASSWORD'];   //16 character obtained from app password created
+//     $mail->Port = 465;                    //SMTP port
+//     $mail->SMTPSecure = "ssl";
+
+//     //sender information
+//     $mail->setFrom($_ENV['GMAIL_USER'], 'Admin');
+
+//     //receiver email address and name
+//     $mail->addAddress($recipientEmailAddress, $recipientEmailAddress);
+//     if ($attachment !== 'none') {
+//         $mail->AddAttachment($attachment);
+//     }
+
+//     // Add cc or bcc
+//     // $mail->addCC('email@mail.com');
+//     // $mail->addBCC('user@mail.com');
+
+//     $mail->isHTML(true);
+
+//     $mail->Subject = $subject;
+//     $mail->Body    = $message;
+
+//     // Send mail
+//     if (!$mail->send()) {
+//         echo 'Email not sent an error was encountered: ' . $mail->ErrorInfo;
+//     } else {
+//         //echo 'Message has been sent.';
+//     }
+
+//     $mail->smtpClose();
+// }
+
+// function sendEmail($recipientEmailAddress, $subject, $message, $attachment)
+// {
+//     $CI = &get_instance();
+//     $CI->load->library('My_PHPMailer');
+
+//     $mail = new PHPMailer();
+
+//     // $mail->SMTPDebug = 3;
+
+//     $mail->isSMTP();
+//     $mail->Host       = 'smtp.gmail.com';
+//     $mail->Port       = 587;
+//     $mail->SMTPSecure = 'tls';
+//     $mail->SMTPAuth   = true;
+
+//     $mail->Username = $CI->config->item('mail_Username');
+//     $mail->Password = $CI->config->item('mail_Password');
+//     $mail->setFrom($CI->config->item('mail_Username'), $CI->config->item('mail_setFrom'));
+//     $mail->addReplyTo($CI->config->item('mail_Username'), $CI->config->item('mail_setFrom'));
+//     $mail->addAddress($recipientEmailAddress, preg_replace('/@.*?$/', '', $recipientEmailAddress));
+//     if ($attachment !== 'none') {$mail->AddAttachment($attachment);}
+//     $mail->Subject = $subject;
+//     $mail->msgHTML($message);
+
+//     if (!$mail->send()) {
+//         //return false;
+//         //echo 'Message could not be sent.';
+//         echo 'Mailer Error: <pre>' . $mail->ErrorInfo . '</pre>';
+//         //exit(0);
+//     }
+
+//     //return true;
+// }

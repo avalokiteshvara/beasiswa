@@ -219,7 +219,20 @@
                     	
                     */
 
-                    $('.simple-marquee-container').SimpleMarquee();
+                    let options = {
+                        autostart: true,
+                        property: 'value',
+                        onComplete: null,
+                        duration: 2000,
+                        padding: 10,
+                        sibling_class: 0,
+                        hover: true,
+                        velocity: 0.02
+                        
+                    }
+
+
+                    $('.simple-marquee-container').SimpleMarquee(options);
 
                 });
             </script>
@@ -271,7 +284,7 @@
     <?php if (get_settings('show', 'frontpage_popup') === 'YA') { ?>
 
         <!-- Modal -->
-        <div class="modal fade" id="frontpage_popup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade modal-lg" id="frontpage_popup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
