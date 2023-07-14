@@ -44,7 +44,7 @@ class Admin extends MX_Controller
 
         $this->load->model('peserta/Peserta_model', 'peserta_m');
 
-        $this->db->select("a.id,a.kategori_id,a.email,a.file_foto,a.nik,a.alamat_rumah,
+        $this->db->select("a.id,a.kategori_id,a.email,a.file_foto,a.nik,a.nokk, a.alamat_rumah,
                        a.kelurahan_id,a.kelurahan,a.kecamatan, a.kab_kota,
                        a.status, a.status_akhir,b.strict_ip_minimal,b.ip_minimal,
                        a.akreditasi, a.ip_semester,b.akreditasi AS akreditasi_prog_studi,
@@ -299,7 +299,6 @@ class Admin extends MX_Controller
         // $kecamatan = $this->input->post('kecamatan');
         // $kelurahan = $this->input->post('kelurahan');
 
-
         $wil = explode(':', $this->input->post('wilayah'));
 
         $wil_id   = $wil[0];
@@ -307,8 +306,8 @@ class Admin extends MX_Controller
         $wil_kec  = $wil[2];
         $wil_kab  = $wil[3];
 
-
         $akreditasi    = $this->input->post('akreditasi');
+        $alamat_rumah  = $this->input->post('alamat_rumah');
         $ip_semester   = str_replace(',', '.', $this->input->post('ip_semester'));
         $semester      = $this->input->post('semester');
         $jenis_jurusan = $this->input->post('jenis_jurusan');
@@ -321,6 +320,7 @@ class Admin extends MX_Controller
             'kelurahan'     => $wil_desa,
             'kecamatan'     => $wil_kec,
             'kab_kota'      => $wil_kab,
+            'alamat_rumah'  => $alamat_rumah,
 
             'akreditasi'    => $akreditasi,
             'ip_semester'   => $ip_semester,
@@ -445,6 +445,9 @@ class Admin extends MX_Controller
 
             $crud->field_type('slug', 'hidden');
 
+            $crud->display_as('prestasi', 'Beasiswa Prestasi ?');
+            $crud->field_type('prestasi', 'hidden');
+
             $crud->display_as('tgl_buka', 'Dibuka');
             $crud->display_as('tgl_tutup', 'Ditutup');
             $crud->display_as('jml_penerima', 'Quota');
@@ -461,6 +464,7 @@ class Admin extends MX_Controller
 
             $crud->display_as('strict_ip_minimal', 'Keharusan IPK Minimal ?');
             $crud->display_as('set_jenis_dokumen', 'Dokumen yang dapat diunggah');
+
 
             $crud->display_as('sort_num', 'Urutan');
 
@@ -533,6 +537,17 @@ class Admin extends MX_Controller
                 }
                 //return '<a href="' . site_url('admin/qry_validation/' . $row->id) .'">Manage</a>';
             });
+
+
+            $sort_order = array();
+
+            $sort_order['ipk'] = 'IPK';
+            $sort_order['bobot'] = 'Sertifikat Prestasi'; //bobot sertifikat
+            $sort_order['created_at'] = 'Tanggal daftar';
+
+            $crud->field_type('query_sort_order', 'multiselect', $sort_order);
+            $crud->display_as('query_sort_order', 'Urutan Prioritas');
+            $crud->extra_output_description('query_sort_order', 'Prioritas urutan ranking pendaftar');
 
             //tags
             $this->db->order_by('nama ASC');
@@ -668,6 +683,7 @@ class Admin extends MX_Controller
             $crud->columns('nama', 'template');
             $crud->set_field_upload('file_template', 'uploads');
             $crud->display_as('template', 'File Template');
+            $crud->display_as('dok_prestasi', 'Dokumen Prestasi ?');
 
             $crud->callback_column('template', function ($value, $row) {
                 if (empty($row->file_template)) {
@@ -1129,11 +1145,11 @@ class Admin extends MX_Controller
         // echo base64url_decode($slug);
         // $dok = "<div class=\"alert alert-warning\" role=\"alert\"> <i class=\"bi bi-info-circle-fill me-2\"></i>Klik pada baris untuk mengetahui alasan penolakan</div>";
 
-        $dok    = "<table class='table table-striped accordion'>";
+        $dok = "<table class='table table-striped accordion'>";
         $dok .= " <tbody>";
         $kategori      = $this->db->get_where('kategori', array('slug' => $slug))->row_array();
         $jenis_dokumen = explode(',', $kategori['set_jenis_dokumen']);
-        $i = 1;
+        $i             = 1;
         foreach ($jenis_dokumen as $jd) {
 
             $jenis_dokumen = jenis_dokumen($jd);
@@ -1142,7 +1158,7 @@ class Admin extends MX_Controller
                 continue;
             }
 
-            $dok .= " <tr id=\"tr_" .  $i . "\" data-bs-toggle=\"collapse\" data-bs-target=\"#r" . $i . "\">";
+            $dok .= " <tr id=\"tr_" . $i . "\" data-bs-toggle=\"collapse\" data-bs-target=\"#r" . $i . "\">";
             $dok .= "   <td>" . jenis_dokumen($jd) . "</td>";
 
             $cek = $this->db->get_where('dokumen_pendaftar', array('jenis_dokumen_id' => $jd, 'pendaftar_id' => $pendaftar_id));

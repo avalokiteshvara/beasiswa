@@ -80,8 +80,8 @@
       var jenis_dokumen_id = file_dok_id[1];
 
       var fd = new FormData();
-      fd.append('user_id', <?php echo $user_id; ?>);
-      fd.append('user_nik', <?php echo $user_nik; ?>)
+      fd.append('user_id', '<?php echo $user_id; ?>');
+      fd.append('user_nik', '<?php echo $user_nik; ?>')
       fd.append('file_dokumen', $("#dok_" + jenis_dokumen_id).prop("files")[0]);
       fd.append('jenis_dokumen_id', jenis_dokumen_id);
 

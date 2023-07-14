@@ -23,7 +23,7 @@
   <link href="<?php echo site_url('assets/pendaftaran/css/lora.css'); ?>" rel="stylesheet" type="text/css">
   <link href="<?php echo site_url('assets/pendaftaran/css/montserrat.css'); ?>" rel="stylesheet" type="text/css">
   <!-- sweet alert -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" /> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.79/theme-default.min.css" integrity="sha512-8wU/gsExpTv8PS32juUjuZx10OBHgxj5ZWoVDoJKvBrFy524wEKAUgS/64da3Qg4zD5kVwQh3+xFmzzOzFDAtg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -34,7 +34,7 @@
      <![endif]-->
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
   <script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit&hl=id" async defer></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -245,13 +245,17 @@
                       <?php endforeach;
                       endif; ?>
 
-
-
                       <form aria-label="" role="form" name="form-nik" id="form-nik" action="" method="post">
                         <div id="nik-part">
                           <div class="form-group">
                             <label for="nik">Nomor Induk Kependudukan</label>
                             <input type="text" class="form-control" id="nik" name="nik" placeholder="Masukkan Nomor Induk Kependudukan" data-validation="required number" data-validation-error-msg="NIK tidak valid">
+                          </div>
+                        </div>
+                        <div id="nokk-part">
+                          <div class="form-group">
+                            <label for="nokk">Nomor Kartu Keluarga</label>
+                            <input type="text" class="form-control" id="nokk" name="nokk" placeholder="Masukkan Nomor Kartu Keluarga" data-validation="required number" data-validation-error-msg="No. Kartu Keluarga tidak valid">
                           </div>
                         </div>
                         <?php if ($detail['level_penerima'] === 'dosen') { ?>
@@ -321,6 +325,10 @@
                             <div class="form-group">
                               <label for="nik">NIK</label>
                               <input type="text" name="nik" class="form-control" placeholder="" tabindex="1" value="<?php echo $this->session->userdata('nik') ?>" readonly>
+                            </div>
+                            <div class="form-group">
+                              <label for="nokk">Nomor Kartu keluarga</label>
+                              <input type="text" name="nokk" class="form-control" placeholder="" tabindex="1" value="<?php echo $this->session->userdata('nokk') ?>" readonly>
                             </div>
                             <div class="form-group">
                               <label for="nama_lengkap">Nama Lengkap</label>
@@ -416,6 +424,11 @@
                                 </div>
 
                                 <div class="form-group">
+                                  <label for="nokk">Nomor Kartu Keluarga</label>
+                                  <input type="text" name="nokk" class="form-control" placeholder="" tabindex="1" value="<?php echo $this->session->userdata('nokk') ?>" readonly>
+                                </div>
+
+                                <div class="form-group">
                                   <label for="nama_lengkap">Nama lengkap (Beserta gelar jika ada)</label>
                                   <input tabindex="2" type="text" class="form-control" id="nama_lengkap" value="<?php echo $this->session->userdata('nama'); ?>" name="nama_lengkap" placeholder="Masukkan Nama Lengkap" data-validation="required">
                                 </div>
@@ -436,12 +449,12 @@
                                   </div>
 
                                   <div class="form-group">
-                                    <label for="nidn">Perguruan Tinggi</label>
+                                    <label for="lembaga_kerja">Perguruan Tinggi</label>
                                     <input tabindex="5" type="text" name="lembaga_kerja" class="form-control" placeholder="" value="<?php echo $this->session->userdata('pt_dinas') ?>">
                                   </div>
 
                                   <div class="form-group">
-                                    <label for="nidn">Program Studi</label>
+                                    <label for="prodi_kerja">Program Studi</label>
                                     <input tabindex="6" type="text" name="prodi_kerja" class="form-control" placeholder="" value="<?php echo $this->session->userdata('prodi_dinas') ?>">
                                   </div>
 
@@ -675,16 +688,18 @@
     $.validate({
       language: myLanguage,
       modules: 'date,logic',
+      scrollToTopOnError: true,
 
       onError: function($form) {
         // tampilkan pesan error pada elemen dengan kelas "error-message"
         // $('.error-message').text('Form tidak valid. Periksa kembali isian Anda.');
-
         swal({
           title: 'Ada kesalahan!',
           text: 'Form tidak valid. Periksa kembali isian Anda.',
-          type: 'error',
-          confirmButtonText: 'Ok'
+          icon: 'error',
+          confirmButtonText: 'Ok',
+          allowEscapeKey: true,
+          allowOutsideClick: true,
         });
       },
       onSuccess: function() {
@@ -710,7 +725,7 @@
           swal({
             title: 'Ada kesalahan!',
             text: 'Mohon perbaiki kesalahan sebelum melanjutkan',
-            type: 'error',
+            icon: 'error',
             confirmButtonText: 'Ok'
           });
 

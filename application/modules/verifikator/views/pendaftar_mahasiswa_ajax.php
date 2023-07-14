@@ -87,6 +87,7 @@
                <th>Akreditasi</th>
                <th>Semester</th>
                <th>IPK</th>
+               <th>Sertifikat</th>
                <th>Dokumen</th>
                <th>Instrumen Verifikasi</th>
 
@@ -283,6 +284,7 @@
       </div>
    </div>
 </div>
+
 <script>
    function base64url_encode(data) {
       var str = base64.encode(data);
@@ -324,7 +326,7 @@
       "columns": [
 
          {
-            "data": "nama_lengkap"
+            "data": "nama_lengkap" //0
          },
          {
             "data": "kab_kota"
@@ -354,7 +356,10 @@
             "data": "semester"
          },
          {
-            "data": "ip_semester"
+            "data": "ip_semester" //10
+         },
+         {
+            "data": "bobot" //
          },
          {
             "data": "dokumen"
@@ -368,7 +373,28 @@
             "render": function(data, type, row) {
                return '<a href="#" class="detail" id="' + row['nik'] + '" onclick="show_detail(\'' + row['nik'] + '\')">' + data + '</a>';
             },
-            "targets": 0
+            "targets": 0,
+            "orderable": false
+         },
+         {
+            "targets":1,
+            "orderable": false
+         },
+         {
+            "targets":2,
+            "orderable": false
+         },
+         {
+            "targets":3,
+            "orderable": false
+         },
+         {
+            "targets":4,
+            "orderable": false
+         },
+         {
+            "targets":5,
+            "orderable": false
          },
          {
             "render": function(data, type, row) {
@@ -384,6 +410,37 @@
             "searchable": false
          },
          {
+            "targets":7,
+            "orderable": false
+         },
+         {
+            "targets":8,
+            "orderable": false
+         },
+         {
+            "targets":9,
+            "orderable": false
+         },
+         {
+            "targets":10,
+            "orderable": false
+         },
+         {
+            "render": function(data, type, row) {
+               if (data == 3) {
+                  return '<span class="badge bg-warning text-dark">NASIONAL</span>';
+               } else if (data == 4) {
+                  return '<span class="badge bg-success text-white">INTERNASIONAL</span>';
+               } else {
+                  return '<span class="badge bg-secondary text-white">TIDAK ADA</span>';
+               }
+
+            },
+            "targets": 11,
+            "searchable": false,
+            "orderable": false
+         },
+         {
             "render": function(data, type, row) {
                var dok_count = data.split('-');
                var jml_upload = '<span class="badge bg-secondary">' + dok_count[0] + '</span>&nbsp';
@@ -397,14 +454,16 @@
                }
 
             },
-            "targets": 11
+            "targets": 12,
+            "orderable": false
          },
          {
             "render": function(data, type, row) {
                var pendaftar_id_base64 = (base64url_encode(row['id']));
                return '<a href="<?php echo site_url('verifikator/cetak_instrumen_verifikasi/') ?>' + pendaftar_id_base64 + '">[ Download ]</a><br />';;
             },
-            "targets": 12
+            "targets": 13,
+            "orderable": false
          }
 
       ],
@@ -413,7 +472,15 @@
       },
    });
 
+
    $(document).ready(function() {
+
+      $('#sort_order').select2({
+         'dropdownAutoWidth': true
+      });
+
+
+      //jurusan
 
       var select = $('<select/>', {
          'class': '',
@@ -437,6 +504,9 @@
          'text': 'Jurusan non eksakta'
       }).appendTo(select);
 
+
+
+
       let jenis_jurusan = document.getElementById('jenis_jurusan');
 
 
@@ -444,11 +514,11 @@
 
       jenis_jurusan.addEventListener("change", function() {
          Cookies.set("filter", jenis_jurusan.value);
-         datatable.fnDraw(false);
+         datatable.fnDraw(true);
       });
    });
 
-   
+
    $('#example')
       .on('processing.dt', function(e, settings, processing) {
          //  $('#processingIndicator').css( 'display', processing ? 'block' : 'none' );

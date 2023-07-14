@@ -163,7 +163,7 @@ class Test extends MX_Controller
 
     public function testnidn()
     {
-        $url = 'https://api-frontend.kemdikbud.go.id/hit/1016038802';
+        $url = 'https://api-frontend.kemdikbud.go.id/hit/2114017102';
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);

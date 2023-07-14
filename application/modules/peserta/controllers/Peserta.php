@@ -44,7 +44,7 @@ class Peserta extends CI_Controller
         $output['kat_beasiswa'] = $kat['nama'];
         $output['status_lv1']   = $kat['status_lv1'];
         $output['status_lv2']   = $kat['status_lv2'];
-        $output['file_foto'] = $kat['file_foto'];
+        $output['file_foto']    = $kat['file_foto'];
 
         $this->load->view('master.php', (array) $output);
     }
@@ -67,12 +67,12 @@ class Peserta extends CI_Controller
     {
         $user_id = $this->session->userdata('user_id');
 
-        $this->db->select("a.email,a.nama_lengkap,a.no_hp, a.file_foto,a.nik,
+        $this->db->select("a.email,a.nama_lengkap,a.no_hp, a.file_foto,a.nik,a.nokk,
                          a.kelurahan_id,a.kelurahan,a.kecamatan,a.kab_kota,a.alamat_rumah, a.status,
                          a.status_akhir,b.strict_ip_minimal,b.ip_minimal,a.nama_lembaga,a.program_studi,
                          a.akreditasi, a.ip_semester,b.akreditasi AS akreditasi_prog_studi, a.jenis_jurusan,
                          b.semester AS semester_kategori,b.level_penerima,a.lembaga_kerja,a.prodi_kerja,a.nidn,
-                         a.semester, b.status_pendaftaran");
+                         a.semester, b.status_pendaftaran,b.upload_berkas");
         $this->db->join('kategori b', 'a.kategori_id = b.id', 'left');
         $data['biodata'] = $this->db->get_where('pendaftar a', array('a.id' => $user_id))->row_array();
 
@@ -87,7 +87,7 @@ class Peserta extends CI_Controller
         $user_id          = $this->session->userdata('user_id');
         $user_kategori_id = $this->session->userdata('user_kategori_id');
 
-        $this->db->select("a.file_foto,a.status,a.status_akhir,b.status_pendaftaran");
+        $this->db->select("a.file_foto,a.status,a.status_akhir,b.status_pendaftaran,b.upload_berkas");
         $this->db->join('kategori b', 'a.kategori_id = b.id', 'left');
         $data['biodata'] = $this->db->get_where('pendaftar a', array('a.id' => $user_id))->row_array();
 
@@ -157,43 +157,54 @@ class Peserta extends CI_Controller
 
     public function update_biodata()
     {
-
         $userId = $this->session->userdata('user_id');
 
         if (!empty($_POST)) {
-
-            //cek apakah nik baru tidak ada yang memiliki ?
-            $nik = $this->input->post('nik');
+            $nik   = $this->input->post('nik');
+            $email = $this->input->post('email');
+            $no_hp = $this->input->post('no_hp');
 
             $this->db->where('nik', $nik);
             $this->db->where('id !=', $userId);
             $cek_nik = $this->db->get('pendaftar');
 
-            //cek apakah email baru tidak ada yang memiliki ?
-            $email = $this->input->post('email');
-
             $this->db->where('email', $email);
             $this->db->where('id !=', $userId);
             $cek_email = $this->db->get('pendaftar');
-
-            //cek apakah nomor hp baru tidak ada yang memiliki ?
-            $no_hp = $this->input->post('no_hp');
 
             $this->db->where('no_hp', $no_hp);
             $this->db->where('id !=', $userId);
             $cek_hp = $this->db->get('pendaftar');
 
+            $wil = explode(':', $this->input->post('wilayah'));
+
             if ($cek_nik->num_rows() > 0 || $cek_email->num_rows() > 0 || $cek_hp->num_rows() > 0) {
-                $this->alert->set('alert-danger', 'NIK, Email atau No Handphone baru ini sudah digunakan oleh pendaftar lain');
+                $this->alert->set('alert-danger', 'NIK, Email, atau No Handphone baru ini sudah digunakan oleh pendaftar lain');
                 redirect(site_url('peserta/index'), 'reload');
             } else {
+                $data = array(
+                    'nik'           => $nik,
+                    'nokk'          => $this->input->post('nokk'),
+                    'nama_lengkap'  => $this->input->post('nama_lengkap'),
+                    'email'         => $email,
+                    'no_hp'         => $no_hp,
+                    'nidn'          => $this->input->post('nidn'),
+                    'lembaga_kerja' => $this->input->post('nama_lembaga'),
+                    'prodi_kerja'   => $this->input->post('prodi_kerja'),
+                    'kelurahan_id'  => $wil[0],
+                    'kelurahan'     => $wil[1],
+                    'kecamatan'     => $wil[2],
+                    'kab_kota'      => $wil[3],
+                    'alamat_rumah'  => $this->input->post('alamat_rumah'),
+                    'nama_lembaga'  => $this->input->post('nama_lembaga'),
+                    'program_studi' => $this->input->post('program_studi'),
+                    'jenis_jurusan' => $this->input->post('jenis_jurusan'),
+                    'akreditasi'    => $this->input->post('akreditasi'),
+                    'semester'      => $this->input->post('semester'),
+                    'ip_semester'   => str_replace(',', '.', $this->input->post('ip_semester')),
+                );
 
                 if (!empty($_FILES['file_foto']['name'])) {
-
-                    // $jenis_dokumen_id = $this->input->post('jenis_dokumen_id');
-                    // $user_nik         = $this->session->userdata('user_nik');
-                    $userId = $this->session->userdata('user_id');
-
                     $upload['upload_path']   = './uploads/foto';
                     $upload['allowed_types'] = 'jpeg|jpg';
                     $upload['encrypt_name']  = true;
@@ -202,116 +213,196 @@ class Peserta extends CI_Controller
                     $this->load->library('upload', $upload);
 
                     if (!$this->upload->do_upload('file_foto')) {
-                        // $data['msg'] = $this->upload->display_errors();
                         $this->alert->set('alert-danger', 'Ada kesalahan! Periksa kembali file yang anda unggah');
                         redirect(site_url('peserta/index'), 'reload');
                     } else {
-                        $success   = $this->upload->data();
-                        $file_name = $success['file_name'];
-
-                        $nik          = $this->input->post('nik');
-                        $nama_lengkap = $this->input->post('nama_lengkap');
-                        $email        = $this->input->post('email');
-                        $no_hp        = $this->input->post('no_hp');
-
-                        // $kab_kota     = $this->input->post('kab_kota');
-                        $wil = explode(':', $this->input->post('wilayah'));
-
-                        $wil_id   = $wil[0];
-                        $wil_desa = $wil[1];
-                        $wil_kec  = $wil[2];
-                        $wil_kab  = $wil[3];
-
-                        $nama_lembaga  = $this->input->post('nama_lembaga');
-                        $program_studi = $this->input->post('program_studi');
-                        $jenisJurusan  = $this->input->post('jenis_jurusan');
-
-                        $akreditasi  = $this->input->post('akreditasi');
-                        $semester    = $this->input->post('semester');
-                        $ip_semester = str_replace(',', '.', $this->input->post('ip_semester'));
-
-                        $this->db->where('id', $userId);
-                        $this->db->update(
-                            'pendaftar',
-                            array(
-                                'nik'           => $nik,
-                                'nama_lengkap'  => $nama_lengkap,
-                                'email'         => $email,
-                                'no_hp'         => $no_hp,
-                                // 'kab_kota'      => $kab_kota,
-                                'kelurahan_id'  => $wil_id,
-                                'kelurahan'     => $wil_desa,
-                                'kecamatan'     => $wil_kec,
-                                'kab_kota'      => $wil_kab,
-
-                                'nama_lembaga'  => $nama_lembaga,
-                                'program_studi' => $program_studi,
-                                'jenis_jurusan' => $jenisJurusan,
-
-                                'akreditasi'    => $akreditasi,
-                                'semester'      => $semester,
-                                'ip_semester'   => $ip_semester,
-                                'file_foto'     => $file_name,
-
-                            )
-                        );
-
-                        $this->alert->set('alert-success', 'Biodata berhasil diupdate');
-                        redirect(site_url('peserta/index'), 'reload');
+                        $success           = $this->upload->data();
+                        $file_name         = $success['file_name'];
+                        $data['file_foto'] = $file_name;
                     }
-                } else {
-                    $nik          = $this->input->post('nik');
-                    $nama_lengkap = $this->input->post('nama_lengkap');
-                    $email        = $this->input->post('email');
-                    $no_hp        = $this->input->post('no_hp');
-                    // $kab_kota     = $this->input->post('kab_kota');
-                    $wil = explode(':', $this->input->post('wilayah'));
-
-                    $wil_id   = $wil[0];
-                    $wil_desa = $wil[1];
-                    $wil_kec  = $wil[2];
-                    $wil_kab  = $wil[3];
-
-
-                    $nama_lembaga  = $this->input->post('nama_lembaga');
-                    $program_studi = $this->input->post('program_studi');
-                    $jenisJurusan  = $this->input->post('jenis_jurusan');
-
-                    $akreditasi  = $this->input->post('akreditasi');
-                    $semester    = $this->input->post('semester');
-                    $ip_semester = str_replace(',', '.', $this->input->post('ip_semester'));
-
-                    $this->db->where('id', $userId);
-                    $this->db->update(
-                        'pendaftar',
-                        array(
-                            'nik'           => $nik,
-                            'nama_lengkap'  => $nama_lengkap,
-                            'email'         => $email,
-                            'no_hp'         => $no_hp,
-                            // 'kab_kota'      => $kab_kota,
-                            'kelurahan_id'  => $wil_id,
-                            'kelurahan'     => $wil_desa,
-                            'kecamatan'     => $wil_kec,
-                            'kab_kota'      => $wil_kab,
-
-
-                            'nama_lembaga'  => $nama_lembaga,
-                            'program_studi' => $program_studi,
-                            'jenis_jurusan' => $jenisJurusan,
-
-                            'akreditasi'    => $akreditasi,
-                            'semester'      => $semester,
-                            'ip_semester'   => $ip_semester
-                        )
-                    );
-
-                    $this->alert->set('alert-success', 'Biodata berhasil diupdate');
-                    redirect(site_url('peserta/index'), 'reload');
                 }
+
+                $this->db->where('id', $userId);
+                $this->db->update('pendaftar', $data);
+
+                $this->alert->set('alert-success', 'Biodata berhasil diupdate');
+                redirect(site_url('peserta/index'), 'reload');
             }
         }
     }
+
+    // public function update_biodata()
+    // {
+
+    //     $userId = $this->session->userdata('user_id');
+
+    //     if (!empty($_POST)) {
+
+    //         //cek apakah nik baru tidak ada yang memiliki ?
+    //         $nik = $this->input->post('nik');
+
+    //         $this->db->where('nik', $nik);
+    //         $this->db->where('id !=', $userId);
+    //         $cek_nik = $this->db->get('pendaftar');
+
+    //         //cek apakah email baru tidak ada yang memiliki ?
+    //         $email = $this->input->post('email');
+
+    //         $this->db->where('email', $email);
+    //         $this->db->where('id !=', $userId);
+    //         $cek_email = $this->db->get('pendaftar');
+
+    //         //cek apakah nomor hp baru tidak ada yang memiliki ?
+    //         $no_hp = $this->input->post('no_hp');
+
+    //         $this->db->where('no_hp', $no_hp);
+    //         $this->db->where('id !=', $userId);
+    //         $cek_hp = $this->db->get('pendaftar');
+
+    //         if ($cek_nik->num_rows() > 0 || $cek_email->num_rows() > 0 || $cek_hp->num_rows() > 0) {
+    //             $this->alert->set('alert-danger', 'NIK, Email atau No Handphone baru ini sudah digunakan oleh pendaftar lain');
+    //             redirect(site_url('peserta/index'), 'reload');
+    //         } else {
+
+    //             if (!empty($_FILES['file_foto']['name'])) {
+
+    //                 // $jenis_dokumen_id = $this->input->post('jenis_dokumen_id');
+    //                 // $user_nik         = $this->session->userdata('user_nik');
+    //                 $userId = $this->session->userdata('user_id');
+
+    //                 $upload['upload_path']   = './uploads/foto';
+    //                 $upload['allowed_types'] = 'jpeg|jpg';
+    //                 $upload['encrypt_name']  = true;
+    //                 $upload['max_size']      = 512;
+
+    //                 $this->load->library('upload', $upload);
+
+    //                 if (!$this->upload->do_upload('file_foto')) {
+    //                     // $data['msg'] = $this->upload->display_errors();
+    //                     $this->alert->set('alert-danger', 'Ada kesalahan! Periksa kembali file yang anda unggah');
+    //                     redirect(site_url('peserta/index'), 'reload');
+    //                 } else {
+    //                     $success   = $this->upload->data();
+    //                     $file_name = $success['file_name'];
+
+    //                     $nik          = $this->input->post('nik');
+    //                     $nama_lengkap = $this->input->post('nama_lengkap');
+    //                     $email        = $this->input->post('email');
+    //                     $no_hp        = $this->input->post('no_hp');
+
+    //                     // $kab_kota     = $this->input->post('kab_kota');
+    //                     $wil = explode(':', $this->input->post('wilayah'));
+
+    //                     $wil_id   = $wil[0];
+    //                     $wil_desa = $wil[1];
+    //                     $wil_kec  = $wil[2];
+    //                     $wil_kab  = $wil[3];
+
+    //                     $nama_lembaga  = $this->input->post('nama_lembaga');
+    //                     $program_studi = $this->input->post('program_studi');
+    //                     $jenisJurusan  = $this->input->post('jenis_jurusan');
+
+    //                     $nidn         = $this->input->post('nidn');
+    //                     $nama_lembaga = $this->input->post('nama_lembaga');
+    //                     $prodi_kerja  = $this->input->post('prodi_kerja');
+
+    //                     $akreditasi  = $this->input->post('akreditasi');
+    //                     $semester    = $this->input->post('semester');
+    //                     $ip_semester = str_replace(',', '.', $this->input->post('ip_semester'));
+
+    //                     $this->db->where('id', $userId);
+    //                     $this->db->update(
+    //                         'pendaftar',
+    //                         array(
+    //                             'nik'           => $nik,
+    //                             'nama_lengkap'  => $nama_lengkap,
+    //                             'email'         => $email,
+    //                             'no_hp'         => $no_hp,
+    //                             'nidn'          => $nidn,
+    //                             'lembaga_kerja' => $nama_lembaga,
+    //                             'prodi_kerja'   => $prodi_kerja,
+
+    //                             // 'kab_kota'      => $kab_kota,
+    //                             'kelurahan_id'  => $wil_id,
+    //                             'kelurahan'     => $wil_desa,
+    //                             'kecamatan'     => $wil_kec,
+    //                             'kab_kota'      => $wil_kab,
+
+    //                             'nama_lembaga'  => $nama_lembaga,
+    //                             'program_studi' => $program_studi,
+    //                             'jenis_jurusan' => $jenisJurusan,
+
+    //                             'akreditasi'    => $akreditasi,
+    //                             'semester'      => $semester,
+    //                             'ip_semester'   => $ip_semester,
+    //                             'file_foto'     => $file_name,
+
+    //                         )
+    //                     );
+
+    //                     $this->alert->set('alert-success', 'Biodata berhasil diupdate');
+    //                     redirect(site_url('peserta/index'), 'reload');
+    //                 }
+    //             } else {
+    //                 $nik          = $this->input->post('nik');
+    //                 $nama_lengkap = $this->input->post('nama_lengkap');
+    //                 $email        = $this->input->post('email');
+    //                 $no_hp        = $this->input->post('no_hp');
+    //                 // $kab_kota     = $this->input->post('kab_kota');
+    //                 $wil = explode(':', $this->input->post('wilayah'));
+
+    //                 $wil_id   = $wil[0];
+    //                 $wil_desa = $wil[1];
+    //                 $wil_kec  = $wil[2];
+    //                 $wil_kab  = $wil[3];
+
+    //                 $nidn         = $this->input->post('nidn');
+    //                 $nama_lembaga = $this->input->post('nama_lembaga');
+    //                 $prodi_kerja  = $this->input->post('prodi_kerja');
+
+    //                 $nama_lembaga  = $this->input->post('nama_lembaga');
+    //                 $program_studi = $this->input->post('program_studi');
+    //                 $jenisJurusan  = $this->input->post('jenis_jurusan');
+
+    //                 $akreditasi  = $this->input->post('akreditasi');
+    //                 $semester    = $this->input->post('semester');
+    //                 $ip_semester = str_replace(',', '.', $this->input->post('ip_semester'));
+
+    //                 $this->db->where('id', $userId);
+    //                 $this->db->update(
+    //                     'pendaftar',
+    //                     array(
+    //                         'nik'           => $nik,
+    //                         'nama_lengkap'  => $nama_lengkap,
+    //                         'email'         => $email,
+    //                         'no_hp'         => $no_hp,
+
+    //                         'nidn'          => $nidn,
+    //                         'lembaga_kerja' => $nama_lembaga,
+    //                         'prodi_kerja'   => $prodi_kerja,
+
+    //                         // 'kab_kota'      => $kab_kota,
+    //                         'kelurahan_id'  => $wil_id,
+    //                         'kelurahan'     => $wil_desa,
+    //                         'kecamatan'     => $wil_kec,
+    //                         'kab_kota'      => $wil_kab,
+
+    //                         'nama_lembaga'  => $nama_lembaga,
+    //                         'program_studi' => $program_studi,
+    //                         'jenis_jurusan' => $jenisJurusan,
+
+    //                         'akreditasi'    => $akreditasi,
+    //                         'semester'      => $semester,
+    //                         'ip_semester'   => $ip_semester,
+    //                     )
+    //                 );
+
+    //                 $this->alert->set('alert-success', 'Biodata berhasil diupdate');
+    //                 redirect(site_url('peserta/index'), 'reload');
+    //             }
+    //         }
+    //     }
+    // }
 
     public function upload_dokumen()
     {
@@ -319,6 +410,7 @@ class Peserta extends CI_Controller
         if (!empty($_FILES['file_dokumen']['name'])) {
 
             $jenis_dokumen_id = $this->input->post('jenis_dokumen_id');
+            $bobot            = $this->input->post('bobot');
             $user_nik         = $this->session->userdata('user_nik');
             $user_id          = $this->session->userdata('user_id');
 
@@ -339,11 +431,21 @@ class Peserta extends CI_Controller
                 $success   = $this->upload->data();
                 $file_name = $success['file_name'];
 
-                $this->db->query(
-                    "INSERT INTO dokumen_pendaftar (pendaftar_id, jenis_dokumen_id, file_dokumen)
-                     VALUES($user_id, $jenis_dokumen_id, '$file_name')
-                     ON DUPLICATE KEY UPDATE file_dokumen = '$file_name', verifikasi = 'pending'"
+                // $this->db->query(
+                //     "INSERT INTO dokumen_pendaftar (pendaftar_id, jenis_dokumen_id, file_dokumen)
+                //      VALUES($user_id, $jenis_dokumen_id, '$file_name')
+                //      ON DUPLICATE KEY UPDATE file_dokumen = '$file_name', verifikasi = 'pending'"
+                // );
+
+                $set = array(
+                    'pendaftar_id'     => $user_id,
+                    'jenis_dokumen_id' => $jenis_dokumen_id,
+                    'file_dokumen'     => $file_name,
+                    'bobot'            => $bobot,
+                    'verifikasi'       => 'pending',
                 );
+                $exclude_columns = array();
+                $this->db->on_duplicate('dokumen_pendaftar', $set, $exclude_columns);
 
                 $this->alert->set('alert-success', 'File dokumen berhasil diunggah');
                 redirect(site_url('peserta/dokumen'), 'reload');
@@ -478,7 +580,6 @@ class Peserta extends CI_Controller
                         $this->alert->set('alert-danger', 'Password baru & ulangan harus sama');
                         redirect(site_url('peserta/ganti-password'), 'reload');
                     } else {
-
 
                         $this->db->where('id', $user_id);
                         $this->db->update('pendaftar', array('password' => md5($pass_ulangi)));

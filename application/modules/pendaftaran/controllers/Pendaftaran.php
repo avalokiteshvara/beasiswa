@@ -100,14 +100,16 @@ class Pendaftaran extends CI_Controller
                 return false;
             } else {
 
-                //remove dots
+                //remove dots..
                 $nik = preg_replace('#[^\pL\pN/-]+#', '', $string);
                 //dapatkan 4 digit pertama
                 $kode_wil = substr($nik, 0, 4);
+                
+                $nik_pendaftar = explode(",",get_settings('small-text', 'kode_kab_daftar'));
+                $nik_pendaftar = array_map('trim',$nik_pendaftar);   
+                
 
-                $nik_jambi = array('1501', '1502', '1503', '1504', '1505', '1506', '1507', '1508', '1509', '1571', '1572');
-
-                if (in_array($kode_wil, $nik_jambi)) {
+                if (in_array($kode_wil, $nik_pendaftar)) {
                     return true;
                 } else {
                     $this->alert->set('alert-danger', 'Maaf NIK anda bukan kode wilayah di Provinsi Jambi', true);
@@ -119,7 +121,7 @@ class Pendaftaran extends CI_Controller
 
     public function validate_nidn($string)
     {
-        if (trim($string) !== "") {
+        if ($string !== null && trim($string) !== "") {
             $cek = $this->db->get_where('pendaftar', array('nidn' => $string));
             if ($cek->num_rows() > 0) {
                 $this->alert->set('alert-danger', 'NIDN sudah terdaftar', true);
@@ -129,8 +131,7 @@ class Pendaftaran extends CI_Controller
                     $nidn = $this->input->post('nidn');
                     $this->session->set_userdata(array('nidn' => $nidn));
 
-                    //https://api-frontend.kemdikbud.go.id/hit/1016038802
-
+                    
                     $url = 'https://api-frontend.kemdikbud.go.id/hit/' . $nidn;
 
                     $ch = curl_init();
@@ -143,25 +144,13 @@ class Pendaftaran extends CI_Controller
                         'Accept: */*',
                         'Postman-Token: ac8e840f-9e26-40de-8590-00182e726c9d',
                         'Host: api-frontend.kemdikbud.go.id',
-                        'Accept-Encoding: gzip, deflate, br'
+                        'Accept-Encoding: gzip, deflate, br',
                     );
                     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
                     $data = curl_exec($ch);
 
-                    curl_close($ch);
-
-                    /**
-                     *
-                     *
-                     * {"dosen":[
-                     *              {
-                     *                  "text":"ADE FITRI RAHMADANI, NIDN : 1016038802, PT : UNIVERSITAS BUNG HATTA, Prodi : PENDIDIKAN TEKNIK INFORMATIKA  KOMPUTER",
-                     *                  "website-link":"/data_dosen/NUM5OURFMkEtM0JDMy00MjhELUJEOUQtRTBBQjMwQUZCOUQy"
-                     *              }
-                     *         ]
-                     * }
-                     */
+                    curl_close($ch);                    
 
                     if (str_contains($data, 'NIDN')) {
                         $dataJson = json_decode($data); //decoding data JSON
@@ -187,6 +176,8 @@ class Pendaftaran extends CI_Controller
 
     public function index()
     {
+        
+        
         $this->load->library('recaptcha');
 
         $slug         = $this->uri->segment(3);
@@ -208,9 +199,11 @@ class Pendaftaran extends CI_Controller
                     $this->form_validation->set_rules('nidn', 'NIDN', 'trim|callback_validate_nidn');
 
                     if ($this->form_validation->run() == true) {
-                        $nik = $this->input->post('nik');
+                        $nik  = $this->input->post('nik');
+                        $nokk = $this->input->post('nokk');
                         //phase one complate when nik in session
-                        $this->session->set_userdata(array('nik' => $nik));
+                        $this->session->set_userdata(array('nik' => $nik, 'nokk' => $nokk));
+                        //$this->session->set_userdata(array('nokk' => $nokk));
 
                         redirect(site_url('pendaftaran/index/' . $slug), 'reload');
                     } /*else {
@@ -218,7 +211,7 @@ class Pendaftaran extends CI_Controller
                     }*/
 
                     break;
-
+                    
                 case 'daftar':
                     $captcha_answer = $this->input->post('g-recaptcha-response');
                     $response       = $this->recaptcha->verifyResponse($captcha_answer);
@@ -253,6 +246,7 @@ class Pendaftaran extends CI_Controller
                                     $input    = array(
                                         'kategori_id'  => $data['detail']['id'],
                                         'nik'          => $this->input->post('nik'),
+                                        'nokk'         => $this->input->post('nokk'),
                                         'password'     => md5($password),
                                         'nama_lengkap' => $this->input->post('nama_lengkap'),
                                         'alamat_rumah' => $this->input->post('alamat_rumah'),
@@ -325,7 +319,8 @@ class Pendaftaran extends CI_Controller
                                     $input    = array(
                                         'kategori_id'   => $data['detail']['id'],
                                         'nik'           => $this->input->post('nik'),
-                                        'nidn'          => $this->input->post('nidn'),
+                                        'nokk'          => $this->input->post('nokk'),
+
                                         'password'      => md5($password),
                                         'nama_lengkap'  => $this->input->post('nama_lengkap'),
 
@@ -340,6 +335,11 @@ class Pendaftaran extends CI_Controller
                                         'jk'            => $this->input->post('jk'),
                                         'no_hp'         => $this->input->post('no_hp'),
                                         'email'         => $this->input->post('email'),
+
+                                        'nidn'          => $this->input->post('nidn'),
+                                        'lembaga_kerja' => $this->input->post('lembaga_kerja'),
+                                        'prodi_kerja'   => $this->input->post('prodi_kerja'),
+
                                         'nama_lembaga'  => $this->input->post('nama_lembaga'),
                                         'akreditasi'    => $this->input->post('akreditasi'),
                                         'program_studi' => $this->input->post('program_studi'),

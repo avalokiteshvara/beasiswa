@@ -114,6 +114,7 @@
                <th>Akreditasi</th>
                <th>Semester</th>
                <th>IPK</th>
+               <th>Sertifikat</th>
                <th>Dokumen</th>
                <th>Instrumen verifikasi</th>
                <th>Status</th>
@@ -153,6 +154,11 @@
                            <div class="mb-3 form-floating">
                               <input type="text" id="nik" class="form-control" readonly>
                               <label for="nik" class="form-label">NIK</label>
+                           </div>
+
+                           <div class="mb-3 form-floating">
+                              <input type="text" id="nokk" class="form-control" readonly>
+                              <label for="nokk" class="form-label">No. Kartu Keluarga</label>
                            </div>
 
                            <div class="mb-3 form-floating">
@@ -488,7 +494,10 @@
             "data": "semester"
          },
          {
-            "data": "ip_semester"
+            "data": "ip_semester" //10
+         },
+         {
+            "data": "bobot" //11
          },
          {
             "data": "dokumen"
@@ -522,7 +531,28 @@
             "render": function(data, type, row) {
                return '<a href="#" class="detail" id="' + row['nik'] + '" onclick="show_detail(\'' + row['nik'] + '\')">' + data + '</a>';
             },
-            "targets": 0
+            "targets": 0,
+            "orderable": false
+         },
+         {
+            "targets":1,
+            "orderable": false
+         },
+         {
+            "targets":2,
+            "orderable": false
+         },
+         {
+            "targets":3,
+            "orderable": false
+         },
+         {
+            "targets":4,
+            "orderable": false
+         },
+         {
+            "targets":5,
+            "orderable": false
          },
          {
 
@@ -536,7 +566,39 @@
 
             },
             "targets": 6,
-            "searchable": false
+            "searchable": false,
+            "orderable": false
+         },
+         {
+            "targets":7,
+            "orderable": false
+         },
+         {
+            "targets":8,
+            "orderable": false
+         },
+         {
+            "targets":9,
+            "orderable": false
+         },
+         {
+            "targets":10,
+            "orderable": false
+         },
+         {
+            "render": function(data, type, row) {
+               if (data == 3) {
+                  return '<span class="badge bg-warning text-dark">NASIONAL</span>';
+               } else if (data == 4) {
+                  return '<span class="badge bg-success text-white">INTERNASIONAL</span>';
+               }else{
+                  return '<span class="badge bg-secondary text-white">TIDAK ADA</span>';
+               }
+
+            },
+            "targets": 11,
+            "searchable": false,
+            "orderable": false
          },
          {
             "render": function(data, type, row) {
@@ -552,15 +614,17 @@
                }
 
             },
-            "targets": 11,
-            "searchable": false
+            "targets": 12,
+            "searchable": false,
+            "orderable": false
          },
          {
             "render": function(data, type, row) {
                var pendaftar_id_base64 = (base64url_encode(row['id']));
                return '<a href="<?php echo site_url('admin/cetak_instrumen_verifikasi/') ?>' + pendaftar_id_base64 + '">[ Download ]</a><br />';;
             },
-            "targets": 12
+            "targets": 13,
+            "orderable": false
          },
          {
             "render": function(data, type, row) {
@@ -605,13 +669,15 @@
                }
 
             },
-            "targets": 13
+            "targets": 14,
+            "orderable": false
          },
          {
             "render": function(data, type, row) {
                return '<a href="#" class="ubah_email alert-info" id="ubah_email_' + row['nik'] + '" onclick="show_ubah_email(\'' + row['nik'] + '\')">' + data + '</a>';
             },
-            "targets": 14
+            "targets": 15,
+            "orderable": false
 
          },
          {
@@ -628,16 +694,19 @@
 
                return select;
             },
-            "targets": 15
-         }, {
             "targets": 16,
-            "searchable": false
+            "orderable": false
+         }, {
+            "targets": 17,
+            "searchable": false,
+            "orderable": false
          },
          {
             "render": function(data, type, row) {
                return '<button type="button" class="btn btn-danger" onclick="hapus_pendaftaran(' + data + ')">HAPUS</button>&nbsp;<button type="button" class="btn btn-success" onclick="show_ubah_datadiri(' + data + ')">EDIT</button>';
             },
-            "targets": 17
+            "targets": 18,
+            "orderable": false
          }
 
          //  {
@@ -685,7 +754,7 @@
 
       jenis_jurusan.addEventListener("change", function() {
          Cookies.set("filter", jenis_jurusan.value);       
-         datatable.fnDraw(false);       
+         datatable.fnDraw(true);       
       });
    });
 

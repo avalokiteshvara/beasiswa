@@ -10,6 +10,11 @@
     <input type="text" class="form-control" id="bio_nik" name="nik" placeholder="NIK (Nomor Induk Kependudukan)" value="<?php echo $biodata['nik'] ?>" readonly>
   </div>
   <div class="form-group mb-3">
+    <label for="exampleInputEmail1">No. Kartu Keluarga</label>
+    <input type="text" class="form-control" id="bio_nokk" name="nokk" placeholder="No Kartu Keluarga" value="<?php echo $biodata['nokk'] ?>" readonly>
+  </div>
+  
+  <div class="form-group mb-3">
     <label for="exampleInputEmail1">Email</label>
     <input type="email" class="form-control" id="bio_email" name="email" placeholder="Alamat Email" value="<?php echo $biodata['email'] ?>" readonly>
   </div>
@@ -23,7 +28,7 @@
 
   <div class="form-group mb-3">
     <label for="exampleInputEmail1">Alamat lengkap</label>
-    <input type="text" class="form-control" id="bio_alamat_rumah" name="alamat_rumah" placeholder="" value="<?php echo $biodata['alamat_rumah'] ?>" readonly>
+    <input type="text" class="form-control" id="bio_alamat_rumah" name="alamat_rumah" placeholder="" value="<?php echo $biodata['alamat_rumah'] ?>">
   </div>
 
 
@@ -232,6 +237,7 @@
     fd.append('wilayah', $('#wilayah').val());
     fd.append('akreditasi', $('#bio_akreditasi').val());
     fd.append('semester', $('#bio_semester').val());
+    fd.append('alamat_rumah', $('#bio_alamat_rumah').val());
 
     fd.append('jenis_jurusan', $('#bio_jenis_jurusan').val());
 

@@ -19,6 +19,60 @@ class Api extends CI_Controller
         $this->tahun_aktif = get_settings('small-text', 'tahun_aktif');
     }
 
+    public function cek_nidn($nidn)
+    {
+        header('content-type: application/json');
+
+        $url = 'https://api-frontend.kemdikbud.go.id/hit/' . $nidn;
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // tambahkan opsi ini
+
+        $headers = array(
+            'User-Agent: PostmanRuntime/7.31.3',
+            'Accept: */*',
+            'Postman-Token: ac8e840f-9e26-40de-8590-00182e726c9d',
+            'Host: api-frontend.kemdikbud.go.id',
+            'Accept-Encoding: gzip, deflate, br',
+        );
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+        $data = curl_exec($ch);
+
+        curl_close($ch);
+
+        
+
+        if (str_contains($data, 'NIDN')) {
+            $dataJson = json_decode($data); //decoding data JSON
+            $txt      = $dataJson->dosen[0]->text;
+            $exp      = explode(",", $txt);
+
+            $nama  = $exp[0];
+            $pt    = explode(":", $exp[2])[1];
+            $prodi = explode(":", $exp[3])[1];
+
+            // $this->session->set_userdata(array('nama' => $nama));
+            // $this->session->set_userdata(array('pt_dinas' => $pt));
+            // $this->session->set_userdata(array('prodi_dinas' => $prodi));
+            // return true;
+
+            echo json_encode(
+                array(
+                    'status'      => 'valid',
+                    'pt_dinas'    => $pt,
+                    'prodi_dinas' => $prodi,
+                )
+            );
+        } else {
+            // $this->alert->set('alert-danger', 'NIDN tidak terdaftar di PDDikti', true);
+            // return false;
+            echo json_encode(array('status' => 'invalid'));
+        }
+    }
+
     public function get_wilayah()
     {
         header('content-type: application/json');
@@ -109,12 +163,10 @@ class Api extends CI_Controller
         echo $return;
     }
 
-
     public function lolos1()
     {
         $filter_kat = $this->input->post('filter_kat');
         $filter_jur = $this->input->post('filter_jur');
-
 
         $this->load->library('Datatables');
 
@@ -139,7 +191,7 @@ class Api extends CI_Controller
         }
         $this->datatables->where('status', 'diterima');
         $this->datatables->like("DATE_FORMAT(created_at, '%d-%m-%Y %H:%i:%s')", $this->tahun_aktif);
-       
+
         echo $this->datatables->generate();
     }
 
@@ -147,7 +199,6 @@ class Api extends CI_Controller
     {
         $filter_kat = $this->input->post('filter_kat');
         $filter_jur = $this->input->post('filter_jur');
-
 
         $this->load->library('Datatables');
 
@@ -172,7 +223,6 @@ class Api extends CI_Controller
         }
         $this->datatables->where('status_akhir', 'diterima');
         $this->datatables->like("DATE_FORMAT(created_at, '%d-%m-%Y %H:%i:%s')", $this->tahun_aktif);
-       
 
         echo $this->datatables->generate();
     }
@@ -247,7 +297,6 @@ class Api extends CI_Controller
         echo json_encode(array('persyaratan' => $kat['persyaratan']));
     }
 
-
     public function pendaftar_ajax()
     {
         //get data
@@ -258,7 +307,6 @@ class Api extends CI_Controller
         $kat  = $this->db->get_where('kategori', array('slug' => $slug));
 
         $kategori = $kat->row_array();
-
 
         if ($kategori['level_penerima'] === 'pelajar') {
 
@@ -289,6 +337,7 @@ class Api extends CI_Controller
              a.akreditasi,
              a.semester,
              a.ip_semester,
+             CAST((SELECT IFNULL(SUM(bobot),0) FROM dokumen_pendaftar WHERE pendaftar_id = a.id) AS UNSIGNED) AS `bobot`,
              a.jenis_jurusan AS jenis_jurusan,
              CONCAT(
                   LPAD(CAST((SELECT COUNT(*) FROM `dokumen_pendaftar` WHERE `pendaftar_id` = `a`.`id`) AS UNSIGNED),2,'0'),
@@ -302,12 +351,30 @@ class Api extends CI_Controller
              a.status_akhir,
              a.email,
              DATE_FORMAT(`a`.`created_at`,'%d-%m-%Y %H:%i:%s') AS `tgl_daftar`,
-             a.kategori_id"
+             a.kategori_id"             
             );
 
             $this->datatables->from('pendaftar a');
             $this->datatables->group_by('a.id');
             $this->datatables->where('a.kategori_id', $kategori['id']);
+            
+            $query_sort_order = explode(",",$kategori['query_sort_order']);
+            $count_sort_order = count(array_filter($query_sort_order, 'strlen'));
+            if($count_sort_order > 0){
+                
+                if(in_array('ipk',$query_sort_order)){
+                    $this->datatables->order_by('a.ip_semester','DESC');
+                }
+
+                if(in_array('bobot',$query_sort_order)){
+                    $this->datatables->order_by('(SELECT SUM(bobot) FROM dokumen_pendaftar WHERE pendaftar_id = a.id)','DESC');
+                }
+
+                if(in_array('created_at',$query_sort_order)){
+                    $this->datatables->order_by('a.created_at','DESC');
+                }
+
+            }
 
             $jenis_jurusan = $this->input->post('filter');
             if ($jenis_jurusan) {

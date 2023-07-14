@@ -1,0 +1,3353 @@
+{
+  "ftp://beap7247@beasiswa.jambiprov.go.id:21": {
+    ".bash_logout": {
+      "type": "-",
+      "size": 18,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".bash_profile": {
+      "type": "-",
+      "size": 141,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".bashrc": {
+      "type": "-",
+      "size": 376,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".cagefs": {},
+    ".cl.selector": {},
+    ".cpanel": {},
+    ".cphorde": {},
+    ".gemrc": {
+      "type": "-",
+      "size": 139,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".htpasswds": {},
+    ".lastlogin": {
+      "type": "-",
+      "size": 625,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".myimunify_id": {
+      "type": "-",
+      "size": 102,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".razor": {},
+    ".softaculous": {},
+    ".spamassassin": {},
+    ".spamassassinenable": {
+      "type": "-",
+      "size": 0,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".subaccounts": {},
+    ".trash": {},
+    ".wp-toolkit-identifier": {
+      "type": "-",
+      "size": 684,
+      "lmtime": 0,
+      "modified": false
+    },
+    "access-logs": {
+      "type": "l",
+      "size": 34,
+      "lmtime": 0,
+      "modified": false
+    },
+    "etc": {},
+    "logs": {},
+    "lscache": {},
+    "mail": {},
+    "public_ftp": {},
+    "public_html": {
+      ".env": {
+        "type": "-",
+        "size": 612,
+        "lmtime": 0,
+        "modified": false
+      },
+      ".gitignore": {
+        "type": "-",
+        "size": 46,
+        "lmtime": 0,
+        "modified": false
+      },
+      ".htaccess": {
+        "type": "-",
+        "size": 2787,
+        "lmtime": 0,
+        "modified": false
+      },
+      ".well-known": {},
+      "README.md": {
+        "type": "-",
+        "size": 11,
+        "lmtime": 1678167607715.9749,
+        "modified": false
+      },
+      "application": {
+        ".gitignore": {
+          "type": "-",
+          "size": 7,
+          "lmtime": 0,
+          "modified": false
+        },
+        ".htaccess": {
+          "type": "-",
+          "size": 123,
+          "lmtime": 0,
+          "modified": false
+        },
+        "README.markdown": {
+          "type": "-",
+          "size": 2390,
+          "lmtime": 1661998489157.8264,
+          "modified": false
+        },
+        "cache": {
+          ".htaccess": {
+            "type": "-",
+            "size": 123,
+            "lmtime": 0,
+            "modified": false
+          },
+          "index.html": {
+            "type": "-",
+            "size": 131,
+            "lmtime": 0,
+            "modified": false
+          }
+        },
+        "config": {
+          "autoload.php": {
+            "type": "-",
+            "size": 4025,
+            "lmtime": 0,
+            "modified": false
+          },
+          "breadcrumbs.php": {
+            "type": "-",
+            "size": 1322,
+            "lmtime": 0,
+            "modified": false
+          },
+          "config.php": {
+            "type": "-",
+            "size": 19100,
+            "lmtime": 0,
+            "modified": false
+          },
+          "constants.php": {
+            "type": "-",
+            "size": 4322,
+            "lmtime": 0,
+            "modified": false
+          },
+          "database.php": {
+            "type": "-",
+            "size": 4623,
+            "lmtime": 0,
+            "modified": false
+          },
+          "doctypes.php": {
+            "type": "-",
+            "size": 2441,
+            "lmtime": 0,
+            "modified": false
+          },
+          "foreign_chars.php": {
+            "type": "-",
+            "size": 2993,
+            "lmtime": 0,
+            "modified": false
+          },
+          "grocery_crud.php": {
+            "type": "-",
+            "size": 2196,
+            "lmtime": 0,
+            "modified": false
+          },
+          "hooks.php": {
+            "type": "-",
+            "size": 802,
+            "lmtime": 0,
+            "modified": false
+          },
+          "image_crud.php": {
+            "type": "-",
+            "size": 291,
+            "lmtime": 0,
+            "modified": false
+          },
+          "index.html": {
+            "type": "-",
+            "size": 131,
+            "lmtime": 0,
+            "modified": false
+          },
+          "memcached.php": {
+            "type": "-",
+            "size": 498,
+            "lmtime": 0,
+            "modified": false
+          },
+          "migration.php": {
+            "type": "-",
+            "size": 3032,
+            "lmtime": 0,
+            "modified": false
+          },
+          "mimes.php": {
+            "type": "-",
+            "size": 10057,
+            "lmtime": 0,
+            "modified": false
+          },
+          "profiler.php": {
+            "type": "-",
+            "size": 477,
+            "lmtime": 0,
+            "modified": false
+          },
+          "recaptcha.php": {
+            "type": "-",
+            "size": 771,
+            "lmtime": 0,
+            "modified": false
+          },
+          "routes.php": {
+            "type": "-",
+            "size": 1975,
+            "lmtime": 0,
+            "modified": false
+          },
+          "smileys.php": {
+            "type": "-",
+            "size": 3181,
+            "lmtime": 0,
+            "modified": false
+          },
+          "user_agents.php": {
+            "type": "-",
+            "size": 6132,
+            "lmtime": 0,
+            "modified": false
+          }
+        },
+        "controllers": {
+          "Api.php": {
+            "type": "-",
+            "size": 13933,
+            "lmtime": 1688710105874.6023,
+            "modified": false
+          },
+          "Custom_404.php": {
+            "type": "-",
+            "size": 481,
+            "lmtime": 0,
+            "modified": false
+          },
+          "Rekap.php": {
+            "type": "-",
+            "size": 3129,
+            "lmtime": 0,
+            "modified": false
+          },
+          "Signout.php": {
+            "type": "-",
+            "size": 427,
+            "lmtime": 0,
+            "modified": false
+          },
+          "Thumb.php": {
+            "type": "-",
+            "size": 11205,
+            "lmtime": 0,
+            "modified": false
+          },
+          "index.html": {
+            "type": "-",
+            "size": 131,
+            "lmtime": 0,
+            "modified": false
+          }
+        },
+        "core": {
+          "MY_DB_mysqli_driver.php": {
+            "type": "-",
+            "size": 3083,
+            "lmtime": 1689315478197.7446,
+            "modified": false
+          },
+          "MY_Exceptions.php": {
+            "type": "-",
+            "size": 12517,
+            "lmtime": 0,
+            "modified": false
+          },
+          "MY_Loader.php": {
+            "type": "-",
+            "size": 1345,
+            "lmtime": 1689315582550.6055,
+            "modified": false
+          },
+          "MY_Router.php": {
+            "type": "-",
+            "size": 186,
+            "lmtime": 0,
+            "modified": false
+          },
+          "MY_Security.php": {
+            "type": "-",
+            "size": 220,
+            "lmtime": 0,
+            "modified": false
+          },
+          "MY_URI.php": {
+            "type": "-",
+            "size": 328,
+            "lmtime": 0,
+            "modified": false
+          },
+          "index.html": {
+            "type": "-",
+            "size": 131,
+            "lmtime": 0,
+            "modified": false
+          }
+        },
+        "helpers": {
+          "alert_helper.php": {
+            "type": "-",
+            "size": 1482,
+            "lmtime": 0,
+            "modified": false
+          },
+          "index.html": {
+            "type": "-",
+            "size": 131,
+            "lmtime": 0,
+            "modified": false
+          },
+          "libs_helper.php": {
+            "type": "-",
+            "size": 29458,
+            "lmtime": 1688715909553.0112,
+            "modified": false
+          },
+          "pendaftar_helper.php": {
+            "type": "-",
+            "size": 421,
+            "lmtime": 0,
+            "modified": false
+          }
+        },
+        "hooks": {
+          "index.html": {
+            "type": "-",
+            "size": 131,
+            "lmtime": 0,
+            "modified": false
+          },
+          "uhoh.php": {
+            "type": "-",
+            "size": 887,
+            "lmtime": 0,
+            "modified": false
+          }
+        },
+        "index.html": {
+          "type": "-",
+          "size": 131,
+          "lmtime": 0,
+          "modified": false
+        },
+        "language": {
+          "english": {
+            "index.html": {
+              "type": "-",
+              "size": 131,
+              "lmtime": 0,
+              "modified": false
+            }
+          },
+          "index.html": {
+            "type": "-",
+            "size": 131,
+            "lmtime": 0,
+            "modified": false
+          },
+          "indonesian": {
+            "calendar_lang.php": {
+              "type": "-",
+              "size": 1668,
+              "lmtime": 0,
+              "modified": false
+            },
+            "date_lang.php": {
+              "type": "-",
+              "size": 3467,
+              "lmtime": 0,
+              "modified": false
+            },
+            "db_lang.php": {
+              "type": "-",
+              "size": 2730,
+              "lmtime": 0,
+              "modified": false
+            },
+            "email_lang.php": {
+              "type": "-",
+              "size": 2210,
+              "lmtime": 0,
+              "modified": false
+            },
+            "form_validation_lang.php": {
+              "type": "-",
+              "size": 3157,
+              "lmtime": 0,
+              "modified": false
+            },
+            "ftp_lang.php": {
+              "type": "-",
+              "size": 1571,
+              "lmtime": 0,
+              "modified": false
+            },
+            "imglib_lang.php": {
+              "type": "-",
+              "size": 2311,
+              "lmtime": 0,
+              "modified": false
+            },
+            "index.html": {
+              "type": "-",
+              "size": 131,
+              "lmtime": 0,
+              "modified": false
+            },
+            "migration_lang.php": {
+              "type": "-",
+              "size": 1093,
+              "lmtime": 0,
+              "modified": false
+            },
+            "number_lang.php": {
+              "type": "-",
+              "size": 539,
+              "lmtime": 0,
+              "modified": false
+            },
+            "pagination_lang.php": {
+              "type": "-",
+              "size": 575,
+              "lmtime": 0,
+              "modified": false
+            },
+            "profiler_lang.php": {
+              "type": "-",
+              "size": 1463,
+              "lmtime": 0,
+              "modified": false
+            },
+            "unit_test_lang.php": {
+              "type": "-",
+              "size": 1080,
+              "lmtime": 0,
+              "modified": false
+            },
+            "upload_lang.php": {
+              "type": "-",
+              "size": 1931,
+              "lmtime": 0,
+              "modified": false
+            }
+          }
+        },
+        "libraries": {
+          "Ajax_pagination.php": {
+            "type": "-",
+            "size": 7062,
+            "lmtime": 0,
+            "modified": false
+          },
+          "Alert.php": {
+            "type": "-",
+            "size": 2927,
+            "lmtime": 0,
+            "modified": false
+          },
+          "Barcode": {
+            "BCGArgumentException.php": {
+              "type": "-",
+              "size": 600,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGBarcode.php": {
+              "type": "-",
+              "size": 14440,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGBarcode1D.php": {
+              "type": "-",
+              "size": 6726,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGColor.php": {
+              "type": "-",
+              "size": 4175,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGDrawException.php": {
+              "type": "-",
+              "size": 486,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGDrawing.php": {
+              "type": "-",
+              "size": 6385,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGFont.php": {
+              "type": "-",
+              "size": 846,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGFontFile.php": {
+              "type": "-",
+              "size": 5309,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGFontPhp.php": {
+              "type": "-",
+              "size": 4067,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGLabel.php": {
+              "type": "-",
+              "size": 8460,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGParseException.php": {
+              "type": "-",
+              "size": 604,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGcodabar.barcode.php": {
+              "type": "-",
+              "size": 3732,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGcode11.barcode.php": {
+              "type": "-",
+              "size": 5387,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGcode128.barcode.php": {
+              "type": "-",
+              "size": 29420,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGcode39.barcode.php": {
+              "type": "-",
+              "size": 5677,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGcode39extended.barcode.php": {
+              "type": "-",
+              "size": 6296,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGcode93.barcode.php": {
+              "type": "-",
+              "size": 9605,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGean13.barcode.php": {
+              "type": "-",
+              "size": 9879,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGean8.barcode.php": {
+              "type": "-",
+              "size": 7359,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGgs1128.barcode.php": {
+              "type": "-",
+              "size": 26038,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGi25.barcode.php": {
+              "type": "-",
+              "size": 5676,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGintelligentmail.barcode.php": {
+              "type": "-",
+              "size": 28517,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGisbn.barcode.php": {
+              "type": "-",
+              "size": 5289,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGmsi.barcode.php": {
+              "type": "-",
+              "size": 5206,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGothercode.barcode.php": {
+              "type": "-",
+              "size": 2213,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGpostnet.barcode.php": {
+              "type": "-",
+              "size": 3758,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGs25.barcode.php": {
+              "type": "-",
+              "size": 4765,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGupca.barcode.php": {
+              "type": "-",
+              "size": 5096,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGupce.barcode.php": {
+              "type": "-",
+              "size": 11957,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGupcext2.barcode.php": {
+              "type": "-",
+              "size": 3670,
+              "lmtime": 0,
+              "modified": false
+            },
+            "BCGupcext5.barcode.php": {
+              "type": "-",
+              "size": 5766,
+              "lmtime": 0,
+              "modified": false
+            },
+            "JoinDraw.php": {
+              "type": "-",
+              "size": 5878,
+              "lmtime": 0,
+              "modified": false
+            },
+            "drawer": {
+              "BCGDraw.php": {
+                "type": "-",
+                "size": 783,
+                "lmtime": 0,
+                "modified": false
+              },
+              "BCGDrawJPG.php": {
+                "type": "-",
+                "size": 2554,
+                "lmtime": 0,
+                "modified": false
+              },
+              "BCGDrawPNG.php": {
+                "type": "-",
+                "size": 5601,
+                "lmtime": 0,
+                "modified": false
+              }
+            }
+          },
+          "Breadcrumbs.php": {
+            "type": "-",
+            "size": 3566,
+            "lmtime": 0,
+            "modified": false
+          },
+          "Datatables.php": {
+            "type": "-",
+            "size": 17732,
+            "lmtime": 0,
+            "modified": false
+          },
+          "Grocery_Btn.php": {
+            "type": "-",
+            "size": 1564,
+            "lmtime": 0,
+            "modified": false
+          },
+          "Grocery_CRUD.php": {
+            "type": "-",
+            "size": 171041,
+            "lmtime": 1689302497604.8352,
+            "modified": false
+          },
+          "Image_CRUD.php": {
+            "type": "-",
+            "size": 26478,
+            "lmtime": 0,
+            "modified": false
+          },
+          "Image_MOO.php": {
+            "type": "-",
+            "size": 46637,
+            "lmtime": 1680591934989.8264,
+            "modified": false
+          },
+          "Recaptcha.php": {
+            "type": "-",
+            "size": 4346,
+            "lmtime": 0,
+            "modified": false
+          },
+          "font": {
+            "Arial.ttf": {
+              "type": "-",
+              "size": 311636,
+              "lmtime": 1661998499769.7854,
+              "modified": false
+            }
+          },
+          "index.html": {
+            "type": "-",
+            "size": 131,
+            "lmtime": 0,
+            "modified": false
+          }
+        },
+        "logs": {
+          "index.html": {
+            "type": "-",
+            "size": 131,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-08-16.php": {
+            "type": "-",
+            "size": 659,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-08-17.php": {
+            "type": "-",
+            "size": 1417826,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-08-18.php": {
+            "type": "-",
+            "size": 4102,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-08-19.php": {
+            "type": "-",
+            "size": 20775,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-08-20.php": {
+            "type": "-",
+            "size": 702,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-08-21.php": {
+            "type": "-",
+            "size": 2277,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-08-22.php": {
+            "type": "-",
+            "size": 1826,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-08-23.php": {
+            "type": "-",
+            "size": 2843,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-08-24.php": {
+            "type": "-",
+            "size": 2179,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-08-25.php": {
+            "type": "-",
+            "size": 652,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-08-26.php": {
+            "type": "-",
+            "size": 688,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-08-28.php": {
+            "type": "-",
+            "size": 1681,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-08-30.php": {
+            "type": "-",
+            "size": 682,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-09-04.php": {
+            "type": "-",
+            "size": 13147,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-09-06.php": {
+            "type": "-",
+            "size": 1936,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-09-09.php": {
+            "type": "-",
+            "size": 658,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-09-11.php": {
+            "type": "-",
+            "size": 640,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-09-12.php": {
+            "type": "-",
+            "size": 41275,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-09-13.php": {
+            "type": "-",
+            "size": 727,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-09-15.php": {
+            "type": "-",
+            "size": 868,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-09-21.php": {
+            "type": "-",
+            "size": 426,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-09-24.php": {
+            "type": "-",
+            "size": 5695,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-09-25.php": {
+            "type": "-",
+            "size": 8083,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-09-26.php": {
+            "type": "-",
+            "size": 1345,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-10-03.php": {
+            "type": "-",
+            "size": 71031,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-10-04.php": {
+            "type": "-",
+            "size": 778,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-10-05.php": {
+            "type": "-",
+            "size": 320,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-10-21.php": {
+            "type": "-",
+            "size": 29292,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-10-27.php": {
+            "type": "-",
+            "size": 19346,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-11-02.php": {
+            "type": "-",
+            "size": 1316346,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-11-03.php": {
+            "type": "-",
+            "size": 2959,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-11-04.php": {
+            "type": "-",
+            "size": 7517009,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-11-05.php": {
+            "type": "-",
+            "size": 20342,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-11-06.php": {
+            "type": "-",
+            "size": 26415,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-11-07.php": {
+            "type": "-",
+            "size": 9924,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-11-09.php": {
+            "type": "-",
+            "size": 1537,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-11-10.php": {
+            "type": "-",
+            "size": 6783,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-11-13.php": {
+            "type": "-",
+            "size": 8729,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-11-14.php": {
+            "type": "-",
+            "size": 13128,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-11-15.php": {
+            "type": "-",
+            "size": 8225,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-11-16.php": {
+            "type": "-",
+            "size": 1228,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-11-17.php": {
+            "type": "-",
+            "size": 3899,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-11-18.php": {
+            "type": "-",
+            "size": 6998,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-11-19.php": {
+            "type": "-",
+            "size": 1228,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-11-20.php": {
+            "type": "-",
+            "size": 8485,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-11-22.php": {
+            "type": "-",
+            "size": 12191,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-11-23.php": {
+            "type": "-",
+            "size": 6421,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-11-24.php": {
+            "type": "-",
+            "size": 2169,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-11-27.php": {
+            "type": "-",
+            "size": 13172,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-11-28.php": {
+            "type": "-",
+            "size": 651,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-11-29.php": {
+            "type": "-",
+            "size": 3889,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-12-02.php": {
+            "type": "-",
+            "size": 9710,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-12-04.php": {
+            "type": "-",
+            "size": 651,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-12-09.php": {
+            "type": "-",
+            "size": 1015,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-12-11.php": {
+            "type": "-",
+            "size": 3536,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-12-13.php": {
+            "type": "-",
+            "size": 1538,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-12-16.php": {
+            "type": "-",
+            "size": 78768,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-12-17.php": {
+            "type": "-",
+            "size": 2382,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-12-19.php": {
+            "type": "-",
+            "size": 1805,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-12-21.php": {
+            "type": "-",
+            "size": 651,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-12-26.php": {
+            "type": "-",
+            "size": 1228,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-12-27.php": {
+            "type": "-",
+            "size": 29316,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-12-28.php": {
+            "type": "-",
+            "size": 75458,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-12-29.php": {
+            "type": "-",
+            "size": 7761,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-12-30.php": {
+            "type": "-",
+            "size": 3469,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2017-12-31.php": {
+            "type": "-",
+            "size": 4389,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-01-01.php": {
+            "type": "-",
+            "size": 1537,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-01-02.php": {
+            "type": "-",
+            "size": 7307,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-01-03.php": {
+            "type": "-",
+            "size": 7883,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-01-04.php": {
+            "type": "-",
+            "size": 961,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-01-05.php": {
+            "type": "-",
+            "size": 1014,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-01-08.php": {
+            "type": "-",
+            "size": 1013,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-01-09.php": {
+            "type": "-",
+            "size": 1014,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-01-11.php": {
+            "type": "-",
+            "size": 1013,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-01-14.php": {
+            "type": "-",
+            "size": 1014,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-01-22.php": {
+            "type": "-",
+            "size": 680,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-01-26.php": {
+            "type": "-",
+            "size": 651,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-01-27.php": {
+            "type": "-",
+            "size": 1012,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-03-06.php": {
+            "type": "-",
+            "size": 960,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-03-09.php": {
+            "type": "-",
+            "size": 8729,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-03-14.php": {
+            "type": "-",
+            "size": 1228,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-03-21.php": {
+            "type": "-",
+            "size": 960,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-03-24.php": {
+            "type": "-",
+            "size": 4113,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-03-27.php": {
+            "type": "-",
+            "size": 960,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-04-01.php": {
+            "type": "-",
+            "size": 1228,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-04-02.php": {
+            "type": "-",
+            "size": 14037,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-04-25.php": {
+            "type": "-",
+            "size": 651,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-04-27.php": {
+            "type": "-",
+            "size": 542,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-04-29.php": {
+            "type": "-",
+            "size": 25770,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-05-13.php": {
+            "type": "-",
+            "size": 651,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-05-21.php": {
+            "type": "-",
+            "size": 960,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-05-22.php": {
+            "type": "-",
+            "size": 1805,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-05-29.php": {
+            "type": "-",
+            "size": 959,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-07-06.php": {
+            "type": "-",
+            "size": 1014,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-07-07.php": {
+            "type": "-",
+            "size": 2382,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-07-13.php": {
+            "type": "-",
+            "size": 960,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-07-17.php": {
+            "type": "-",
+            "size": 651,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-07-21.php": {
+            "type": "-",
+            "size": 1015,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-07-25.php": {
+            "type": "-",
+            "size": 1577,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-07-26.php": {
+            "type": "-",
+            "size": 3043,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-08-01.php": {
+            "type": "-",
+            "size": 4089,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-08-09.php": {
+            "type": "-",
+            "size": 651,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-08-11.php": {
+            "type": "-",
+            "size": 960,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-08-13.php": {
+            "type": "-",
+            "size": 2692,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-08-24.php": {
+            "type": "-",
+            "size": 2691,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-08-29.php": {
+            "type": "-",
+            "size": 651,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-08-30.php": {
+            "type": "-",
+            "size": 400,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-08-31.php": {
+            "type": "-",
+            "size": 1378,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-09-14.php": {
+            "type": "-",
+            "size": 651,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-09-20.php": {
+            "type": "-",
+            "size": 1228,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-09-29.php": {
+            "type": "-",
+            "size": 16646,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-09-30.php": {
+            "type": "-",
+            "size": 16706,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-01.php": {
+            "type": "-",
+            "size": 170,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-03.php": {
+            "type": "-",
+            "size": 1054,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-04.php": {
+            "type": "-",
+            "size": 3030,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-05.php": {
+            "type": "-",
+            "size": 7050739,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-06.php": {
+            "type": "-",
+            "size": 2738340,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-07.php": {
+            "type": "-",
+            "size": 89630,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-08.php": {
+            "type": "-",
+            "size": 110251,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-09.php": {
+            "type": "-",
+            "size": 105538,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-10.php": {
+            "type": "-",
+            "size": 55641,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-11.php": {
+            "type": "-",
+            "size": 45406,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-12.php": {
+            "type": "-",
+            "size": 210999,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-13.php": {
+            "type": "-",
+            "size": 70380,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-14.php": {
+            "type": "-",
+            "size": 319914,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-15.php": {
+            "type": "-",
+            "size": 59554,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-16.php": {
+            "type": "-",
+            "size": 53328,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-17.php": {
+            "type": "-",
+            "size": 59386,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-18.php": {
+            "type": "-",
+            "size": 188150,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-19.php": {
+            "type": "-",
+            "size": 36014,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-20.php": {
+            "type": "-",
+            "size": 374251,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-21.php": {
+            "type": "-",
+            "size": 629244,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-22.php": {
+            "type": "-",
+            "size": 39804,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-23.php": {
+            "type": "-",
+            "size": 38688,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-24.php": {
+            "type": "-",
+            "size": 76507,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-25.php": {
+            "type": "-",
+            "size": 539023,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-26.php": {
+            "type": "-",
+            "size": 26239,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-27.php": {
+            "type": "-",
+            "size": 30448,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-28.php": {
+            "type": "-",
+            "size": 30177,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-29.php": {
+            "type": "-",
+            "size": 781487,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-30.php": {
+            "type": "-",
+            "size": 123776,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-10-31.php": {
+            "type": "-",
+            "size": 46681,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-01.php": {
+            "type": "-",
+            "size": 218532,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-02.php": {
+            "type": "-",
+            "size": 89396,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-03.php": {
+            "type": "-",
+            "size": 703586,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-04.php": {
+            "type": "-",
+            "size": 63332,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-05.php": {
+            "type": "-",
+            "size": 16844461,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-06.php": {
+            "type": "-",
+            "size": 55174,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-07.php": {
+            "type": "-",
+            "size": 14204,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-08.php": {
+            "type": "-",
+            "size": 26927,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-09.php": {
+            "type": "-",
+            "size": 35775,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-10.php": {
+            "type": "-",
+            "size": 17484,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-11.php": {
+            "type": "-",
+            "size": 15492,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-12.php": {
+            "type": "-",
+            "size": 35077,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-13.php": {
+            "type": "-",
+            "size": 83948,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-14.php": {
+            "type": "-",
+            "size": 4048098,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-15.php": {
+            "type": "-",
+            "size": 625752,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-16.php": {
+            "type": "-",
+            "size": 34475,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-17.php": {
+            "type": "-",
+            "size": 26931,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-18.php": {
+            "type": "-",
+            "size": 15325,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-19.php": {
+            "type": "-",
+            "size": 29703,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-20.php": {
+            "type": "-",
+            "size": 8352,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-21.php": {
+            "type": "-",
+            "size": 16121,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-22.php": {
+            "type": "-",
+            "size": 8750,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-23.php": {
+            "type": "-",
+            "size": 14618,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-24.php": {
+            "type": "-",
+            "size": 12290,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-25.php": {
+            "type": "-",
+            "size": 17678,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-26.php": {
+            "type": "-",
+            "size": 2034,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-27.php": {
+            "type": "-",
+            "size": 16941,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-28.php": {
+            "type": "-",
+            "size": 13146,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-29.php": {
+            "type": "-",
+            "size": 3994,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-11-30.php": {
+            "type": "-",
+            "size": 45472,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-01.php": {
+            "type": "-",
+            "size": 4103,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-02.php": {
+            "type": "-",
+            "size": 3994,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-03.php": {
+            "type": "-",
+            "size": 14164,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-04.php": {
+            "type": "-",
+            "size": 5970,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-05.php": {
+            "type": "-",
+            "size": 4974,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-06.php": {
+            "type": "-",
+            "size": 2034,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-07.php": {
+            "type": "-",
+            "size": 9874,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-08.php": {
+            "type": "-",
+            "size": 6934,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-09.php": {
+            "type": "-",
+            "size": 18314,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-10.php": {
+            "type": "-",
+            "size": 13794,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-11.php": {
+            "type": "-",
+            "size": 5954,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-12.php": {
+            "type": "-",
+            "size": 3994,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-13.php": {
+            "type": "-",
+            "size": 3994,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-14.php": {
+            "type": "-",
+            "size": 7825,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-15.php": {
+            "type": "-",
+            "size": 8514,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-16.php": {
+            "type": "-",
+            "size": 9110,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-17.php": {
+            "type": "-",
+            "size": 10854,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-18.php": {
+            "type": "-",
+            "size": 19674,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-19.php": {
+            "type": "-",
+            "size": 6934,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-20.php": {
+            "type": "-",
+            "size": 4210,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-21.php": {
+            "type": "-",
+            "size": 11682,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-22.php": {
+            "type": "-",
+            "size": 11606,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-23.php": {
+            "type": "-",
+            "size": 13673,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-24.php": {
+            "type": "-",
+            "size": 7914,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-25.php": {
+            "type": "-",
+            "size": 8916,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-26.php": {
+            "type": "-",
+            "size": 15875,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-27.php": {
+            "type": "-",
+            "size": 7914,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-28.php": {
+            "type": "-",
+            "size": 112731,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-29.php": {
+            "type": "-",
+            "size": 67711,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-30.php": {
+            "type": "-",
+            "size": 23443,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2018-12-31.php": {
+            "type": "-",
+            "size": 3994,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2019-01-01.php": {
+            "type": "-",
+            "size": 22382,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2019-01-02.php": {
+            "type": "-",
+            "size": 6656,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2019-01-03.php": {
+            "type": "-",
+            "size": 10870,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2019-01-04.php": {
+            "type": "-",
+            "size": 4990,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2019-01-05.php": {
+            "type": "-",
+            "size": 8156,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2019-01-06.php": {
+            "type": "-",
+            "size": 2034,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2019-01-07.php": {
+            "type": "-",
+            "size": 9494,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2019-01-08.php": {
+            "type": "-",
+            "size": 50147,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2019-01-09.php": {
+            "type": "-",
+            "size": 4974,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2019-01-10.php": {
+            "type": "-",
+            "size": 8894,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2019-01-11.php": {
+            "type": "-",
+            "size": 6554,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2019-01-12.php": {
+            "type": "-",
+            "size": 20607,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2019-01-13.php": {
+            "type": "-",
+            "size": 85416,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2019-01-14.php": {
+            "type": "-",
+            "size": 58804,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2019-01-15.php": {
+            "type": "-",
+            "size": 60496,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2019-01-16.php": {
+            "type": "-",
+            "size": 13444,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2019-01-17.php": {
+            "type": "-",
+            "size": 13414,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2022-08-25.php": {
+            "type": "-",
+            "size": 40499,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2022-08-26.php": {
+            "type": "-",
+            "size": 3348,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-03-03.php": {
+            "type": "-",
+            "size": 12275,
+            "lmtime": 1677834857105.5356,
+            "modified": false
+          },
+          "log-2023-03-07.php": {
+            "type": "-",
+            "size": 114866,
+            "lmtime": 1678184688141.8672,
+            "modified": false
+          },
+          "log-2023-03-08.php": {
+            "type": "-",
+            "size": 323,
+            "lmtime": 1678251546340.8167,
+            "modified": false
+          },
+          "log-2023-03-09.php": {
+            "type": "-",
+            "size": 419,
+            "lmtime": 1678314899259.8435,
+            "modified": false
+          },
+          "log-2023-03-10.php": {
+            "type": "-",
+            "size": 1402,
+            "lmtime": 1678458489992.5137,
+            "modified": false
+          },
+          "log-2023-03-11.php": {
+            "type": "-",
+            "size": 353,
+            "lmtime": 1678516418935.073,
+            "modified": false
+          },
+          "log-2023-03-31.php": {
+            "type": "-",
+            "size": 12853,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-04-01.php": {
+            "type": "-",
+            "size": 415,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-04-02.php": {
+            "type": "-",
+            "size": 82471,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-04-03.php": {
+            "type": "-",
+            "size": 12395,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-04-04.php": {
+            "type": "-",
+            "size": 2770,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-04-05.php": {
+            "type": "-",
+            "size": 5733,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-04-06.php": {
+            "type": "-",
+            "size": 324,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-04-07.php": {
+            "type": "-",
+            "size": 559,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-04-08.php": {
+            "type": "-",
+            "size": 2253,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-04-09.php": {
+            "type": "-",
+            "size": 3548,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-04-10.php": {
+            "type": "-",
+            "size": 14133,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-04-11.php": {
+            "type": "-",
+            "size": 1170,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-04-12.php": {
+            "type": "-",
+            "size": 2328,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-04-13.php": {
+            "type": "-",
+            "size": 324,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-04-14.php": {
+            "type": "-",
+            "size": 3270,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-04-15.php": {
+            "type": "-",
+            "size": 324,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-04-16.php": {
+            "type": "-",
+            "size": 2051,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-04-17.php": {
+            "type": "-",
+            "size": 1766,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-04-18.php": {
+            "type": "-",
+            "size": 4402,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-04-19.php": {
+            "type": "-",
+            "size": 2710,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-05-04.php": {
+            "type": "-",
+            "size": 2045,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-05-05.php": {
+            "type": "-",
+            "size": 731,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-05-12.php": {
+            "type": "-",
+            "size": 731,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-05-13.php": {
+            "type": "-",
+            "size": 5327,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-05-17.php": {
+            "type": "-",
+            "size": 324,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-05-24.php": {
+            "type": "-",
+            "size": 974,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-05-31.php": {
+            "type": "-",
+            "size": 4630,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-06-06.php": {
+            "type": "-",
+            "size": 6132,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-06-27.php": {
+            "type": "-",
+            "size": 19165,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-06-28.php": {
+            "type": "-",
+            "size": 29076,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-06-29.php": {
+            "type": "-",
+            "size": 684,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-06-30.php": {
+            "type": "-",
+            "size": 5364,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-07-01.php": {
+            "type": "-",
+            "size": 4225,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-07-02.php": {
+            "type": "-",
+            "size": 2906,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-07-03.php": {
+            "type": "-",
+            "size": 167581,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-07-04.php": {
+            "type": "-",
+            "size": 368105,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-07-05.php": {
+            "type": "-",
+            "size": 268750,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-07-06.php": {
+            "type": "-",
+            "size": 212231,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-07-07.php": {
+            "type": "-",
+            "size": 299380,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-07-08.php": {
+            "type": "-",
+            "size": 90671,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-07-09.php": {
+            "type": "-",
+            "size": 83900,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-07-10.php": {
+            "type": "-",
+            "size": 101131,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-07-11.php": {
+            "type": "-",
+            "size": 149198,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-07-12.php": {
+            "type": "-",
+            "size": 252422,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-07-13.php": {
+            "type": "-",
+            "size": 208464,
+            "lmtime": 0,
+            "modified": false
+          },
+          "log-2023-07-14.php": {
+            "type": "-",
+            "size": 106478,
+            "lmtime": 0,
+            "modified": false
+          }
+        },
+        "models": {
+          "Grocery_crud_model.php": {
+            "type": "-",
+            "size": 18198,
+            "lmtime": 0,
+            "modified": false
+          },
+          "index.html": {
+            "type": "-",
+            "size": 131,
+            "lmtime": 0,
+            "modified": false
+          }
+        },
+        "modules": {
+          "admin": {
+            "config": {
+              "index.html": {
+                "type": "-",
+                "size": 131,
+                "lmtime": 0,
+                "modified": false
+              }
+            },
+            "controllers": {
+              "Admin.php": {
+                "type": "-",
+                "size": 47454,
+                "lmtime": 1689304146962.8748,
+                "modified": false
+              },
+              "index.html": {
+                "type": "-",
+                "size": 131,
+                "lmtime": 0,
+                "modified": false
+              }
+            },
+            "helpers": {
+              "pendaftar_helper.php": {
+                "type": "-",
+                "size": 420,
+                "lmtime": 0,
+                "modified": false
+              }
+            },
+            "index.html": {
+              "type": "-",
+              "size": 131,
+              "lmtime": 0,
+              "modified": false
+            },
+            "models": {
+              "Admin_model.php": {
+                "type": "-",
+                "size": 201,
+                "lmtime": 0,
+                "modified": false
+              },
+              "index.html": {
+                "type": "-",
+                "size": 131,
+                "lmtime": 0,
+                "modified": false
+              }
+            },
+            "views": {
+              "ajax_datadiri": {
+                "biodata.php": {
+                  "type": "-",
+                  "size": 12703,
+                  "lmtime": 1689296744552.2495,
+                  "modified": false
+                },
+                "dokumen.php": {
+                  "type": "-",
+                  "size": 6246,
+                  "lmtime": 1688734937378.815,
+                  "modified": true
+                }
+              },
+              "beranda.php": {
+                "type": "-",
+                "size": 1241,
+                "lmtime": 0,
+                "modified": false
+              },
+              "ganti_password.php": {
+                "type": "-",
+                "size": 4750,
+                "lmtime": 1680839946202.712,
+                "modified": false
+              },
+              "index.html": {
+                "type": "-",
+                "size": 142,
+                "lmtime": 1661998520505.5906,
+                "modified": false
+              },
+              "master.php": {
+                "type": "-",
+                "size": 15550,
+                "lmtime": 0,
+                "modified": true
+              },
+              "pendaftar_mahasiswa.php": {
+                "type": "-",
+                "size": 21453,
+                "lmtime": 1680841155250.4536,
+                "modified": false
+              },
+              "pendaftar_mahasiswa_ajax.php": {
+                "type": "-",
+                "size": 37144,
+                "lmtime": 1688718430103.4846,
+                "modified": false
+              },
+              "pendaftar_pelajar.php": {
+                "type": "-",
+                "size": 12124,
+                "lmtime": 1679033524945.1401,
+                "modified": false
+              },
+              "penerima_sebelumnya": {
+                "mahasiswa_ajax.php": {
+                  "type": "-",
+                  "size": 25050,
+                  "lmtime": 1680459153065.5405,
+                  "modified": false
+                },
+                "pelajar_ajax.php": {
+                  "type": "-",
+                  "size": 11952,
+                  "lmtime": 1679033524945.1401,
+                  "modified": false
+                }
+              },
+              "profile.php": {
+                "type": "-",
+                "size": 2031,
+                "lmtime": 1661998520623.2307,
+                "modified": false
+              },
+              "settings.php": {
+                "type": "-",
+                "size": 6532,
+                "lmtime": 1687928857949.4526,
+                "modified": false
+              }
+            }
+          },
+          "export": {
+            "controllers": {
+              "Export.php": {
+                "type": "-",
+                "size": 20332,
+                "lmtime": 1688962323139.8232,
+                "modified": false
+              }
+            },
+            "views": {
+              "template_export_data.php": {
+                "type": "-",
+                "size": 1058,
+                "lmtime": 1688715560730.1516,
+                "modified": false
+              }
+            }
+          },
+          "guest": {
+            "config": {
+              "index.html": {
+                "type": "-",
+                "size": 131,
+                "lmtime": 0,
+                "modified": false
+              }
+            },
+            "controllers": {
+              "Guest.php": {
+                "type": "-",
+                "size": 9507,
+                "lmtime": 0,
+                "modified": false
+              },
+              "index.html": {
+                "type": "-",
+                "size": 131,
+                "lmtime": 0,
+                "modified": false
+              }
+            },
+            "helpers": {
+              "pendaftar_helper.php": {
+                "type": "-",
+                "size": 420,
+                "lmtime": 0,
+                "modified": false
+              }
+            },
+            "index.html": {
+              "type": "-",
+              "size": 131,
+              "lmtime": 0,
+              "modified": false
+            },
+            "models": {
+              "Guest_model.php": {
+                "type": "-",
+                "size": 1625,
+                "lmtime": 0,
+                "modified": false
+              },
+              "index.html": {
+                "type": "-",
+                "size": 131,
+                "lmtime": 0,
+                "modified": false
+              }
+            },
+            "views": {
+              "beranda.php": {
+                "type": "-",
+                "size": 1241,
+                "lmtime": 0,
+                "modified": false
+              },
+              "ganti_password.php": {
+                "type": "-",
+                "size": 4595,
+                "lmtime": 0,
+                "modified": false
+              },
+              "index.html": {
+                "type": "-",
+                "size": 131,
+                "lmtime": 0,
+                "modified": false
+              },
+              "master.php": {
+                "type": "-",
+                "size": 11612,
+                "lmtime": 0,
+                "modified": true
+              },
+              "pendaftar_mahasiswa.php": {
+                "type": "-",
+                "size": 15632,
+                "lmtime": 0,
+                "modified": false
+              },
+              "pendaftar_mahasiswa_ajax.php": {
+                "type": "-",
+                "size": 21397,
+                "lmtime": 1688718393591.6296,
+                "modified": false
+              },
+              "pendaftar_pelajar.php": {
+                "type": "-",
+                "size": 11883,
+                "lmtime": 0,
+                "modified": false
+              }
+            }
+          },
+          "pendaftaran": {
+            "controllers": {
+              "Pendaftaran.php": {
+                "type": "-",
+                "size": 19156,
+                "lmtime": 1689306908900.6926,
+                "modified": false
+              },
+              "index.html": {
+                "type": "-",
+                "size": 131,
+                "lmtime": 0,
+                "modified": false
+              }
+            },
+            "views": {
+              "index.html": {
+                "type": "-",
+                "size": 131,
+                "lmtime": 0,
+                "modified": false
+              },
+              "master.php": {
+                "type": "-",
+                "size": 43255,
+                "lmtime": 0,
+                "modified": false
+              }
+            }
+          },
+          "peserta": {
+            "controllers": {
+              "Peserta.php": {
+                "type": "-",
+                "size": 26392,
+                "lmtime": 1689297724704.155,
+                "modified": false
+              }
+            },
+            "models": {
+              "Peserta_model.php": {
+                "type": "-",
+                "size": 1227,
+                "lmtime": 1689304457922.9985,
+                "modified": false
+              }
+            },
+            "views": {
+              "biodata.php": {
+                "type": "-",
+                "size": 19486,
+                "lmtime": 1688726519990.126,
+                "modified": true
+              },
+              "dokumen.php": {
+                "type": "-",
+                "size": 7238,
+                "lmtime": 1688443799473.1177,
+                "modified": false
+              },
+              "ganti_password.php": {
+                "type": "-",
+                "size": 4592,
+                "lmtime": 0,
+                "modified": false
+              },
+              "master.php": {
+                "type": "-",
+                "size": 13424,
+                "lmtime": 0,
+                "modified": true
+              },
+              "question-reply.php": {
+                "type": "-",
+                "size": 2228,
+                "lmtime": 1680248426950.8384,
+                "modified": false
+              }
+            }
+          },
+          "questions": {
+            "config": {
+              "index.html": {
+                "type": "-",
+                "size": 131,
+                "lmtime": 0,
+                "modified": false
+              }
+            },
+            "controllers": {
+              "Questions.php": {
+                "type": "-",
+                "size": 9013,
+                "lmtime": 0,
+                "modified": false
+              },
+              "index.html": {
+                "type": "-",
+                "size": 131,
+                "lmtime": 0,
+                "modified": false
+              }
+            },
+            "helpers": {},
+            "index.html": {
+              "type": "-",
+              "size": 131,
+              "lmtime": 0,
+              "modified": false
+            },
+            "models": {
+              "index.html": {
+                "type": "-",
+                "size": 131,
+                "lmtime": 0,
+                "modified": false
+              }
+            },
+            "views": {
+              "beranda.php": {
+                "type": "-",
+                "size": 1241,
+                "lmtime": 0,
+                "modified": false
+              },
+              "ganti_password.php": {
+                "type": "-",
+                "size": 4588,
+                "lmtime": 0,
+                "modified": false
+              },
+              "index.html": {
+                "type": "-",
+                "size": 131,
+                "lmtime": 0,
+                "modified": false
+              },
+              "master.php": {
+                "type": "-",
+                "size": 10515,
+                "lmtime": 0,
+                "modified": false
+              }
+            }
+          },
+          "signin": {
+            "controllers": {
+              "Signin.php": {
+                "type": "-",
+                "size": 1790,
+                "lmtime": 0,
+                "modified": false
+              },
+              "index.html": {
+                "type": "-",
+                "size": 131,
+                "lmtime": 0,
+                "modified": false
+              }
+            },
+            "index.html": {
+              "type": "-",
+              "size": 131,
+              "lmtime": 0,
+              "modified": false
+            },
+            "views": {
+              "index.html": {
+                "type": "-",
+                "size": 131,
+                "lmtime": 0,
+                "modified": false
+              },
+              "signin.php": {
+                "type": "-",
+                "size": 7434,
+                "lmtime": 0,
+                "modified": false
+              }
+            }
+          },
+          "test": {
+            "controllers": {
+              "Test.php": {
+                "type": "-",
+                "size": 7591,
+                "lmtime": 1688708076611.6013,
+                "modified": false
+              }
+            }
+          },
+          "verifikator": {
+            "controllers": {
+              "Verifikator.php": {
+                "type": "-",
+                "size": 13105,
+                "lmtime": 0,
+                "modified": false
+              }
+            },
+            "helpers": {
+              "pendaftar_helper.php": {
+                "type": "-",
+                "size": 420,
+                "lmtime": 0,
+                "modified": false
+              }
+            },
+            "models": {
+              "Verifikator_model.php": {
+                "type": "-",
+                "size": 1663,
+                "lmtime": 0,
+                "modified": false
+              }
+            },
+            "views": {
+              "beranda.php": {
+                "type": "-",
+                "size": 1241,
+                "lmtime": 0,
+                "modified": false
+              },
+              "ganti_password.php": {
+                "type": "-",
+                "size": 1391,
+                "lmtime": 0,
+                "modified": false
+              },
+              "master.php": {
+                "type": "-",
+                "size": 11193,
+                "lmtime": 0,
+                "modified": false
+              },
+              "pendaftar_mahasiswa.php": {
+                "type": "-",
+                "size": 14863,
+                "lmtime": 0,
+                "modified": false
+              },
+              "pendaftar_mahasiswa_ajax.php": {
+                "type": "-",
+                "size": 21521,
+                "lmtime": 1688716896837.0872,
+                "modified": false
+              },
+              "pendaftar_pelajar.php": {
+                "type": "-",
+                "size": 13816,
+                "lmtime": 0,
+                "modified": false
+              }
+            }
+          },
+          "web": {
+            "config": {
+              "index.html": {
+                "type": "-",
+                "size": 131,
+                "lmtime": 0,
+                "modified": false
+              }
+            },
+            "controllers": {},
+            "index.html": {
+              "type": "-",
+              "size": 131,
+              "lmtime": 0,
+              "modified": false
+            },
+            "models": {},
+            "views": {}
+          }
+        },
+        "third_party": {},
+        "views": {}
+      },
+      "assets": {},
+      "cache": {},
+      "cgi-bin": {},
+      "composer.json": {
+        "type": "-",
+        "size": 302,
+        "lmtime": 1681098714677.6682,
+        "modified": false
+      },
+      "composer.lock": {
+        "type": "-",
+        "size": 88196,
+        "lmtime": 1681098714677.6682,
+        "modified": false
+      },
+      "i.php": {
+        "type": "-",
+        "size": 16,
+        "lmtime": 0,
+        "modified": false
+      },
+      "index.php": {
+        "type": "-",
+        "size": 10342,
+        "lmtime": 0,
+        "modified": false
+      },
+      "system-3.1.13": {},
+      "temp": {
+        "semua-beasiswa-mahasiswa-strata-satu-s1-berprestasi-06Apr23.pdf": {
+          "type": "-",
+          "size": 28884,
+          "lmtime": 0,
+          "modified": false
+        },
+        "semua-beasiswa-mahasiswa-strata-satu-s1-kurang-mampu-07Jul23.pdf": {
+          "type": "-",
+          "size": 416516,
+          "lmtime": 1688720928070.846,
+          "modified": false
+        },
+        "semua-beasiswa-mahasiswa-strata-satu-s1-kurang-mampu-30Mar23.pdf": {
+          "type": "-",
+          "size": 273527,
+          "lmtime": 1680193715310.3235,
+          "modified": false
+        },
+        "semua-beasiswa-mahasiswa-strata-satu-s1-kurang-mampu-31Mar23.pdf": {
+          "type": "-",
+          "size": 273527,
+          "lmtime": 1680199831515.3794,
+          "modified": false
+        },
+        "semua-beasiswa-mahasiswa-strata-tiga-s3-tenaga-pengajar-dosen-dalam-negeri-07Jul23.pdf": {
+          "type": "-",
+          "size": 68817,
+          "lmtime": 1688729094788.5967,
+          "modified": false
+        },
+        "terpilih-beasiswa-mahasiswa-strata-satu-s1-berprestasi-06Apr23.pdf": {
+          "type": "-",
+          "size": 28884,
+          "lmtime": 1680734140279.1982,
+          "modified": false
+        },
+        "terpilih-beasiswa-mahasiswa-strata-satu-s1-berprestasi-11Apr23.pdf": {
+          "type": "-",
+          "size": 29717,
+          "lmtime": 0,
+          "modified": false
+        },
+        "terpilih-beasiswa-mahasiswa-strata-satu-s1-kurang-mampu-07Jul23.pdf": {
+          "type": "-",
+          "size": 29033,
+          "lmtime": 1688720802143.3184,
+          "modified": false
+        },
+        "terpilih-beasiswa-mahasiswa-strata-satu-s1-kurang-mampu-30Mar23.pdf": {
+          "type": "-",
+          "size": 273527,
+          "lmtime": 1680194011577.2883,
+          "modified": false
+        },
+        "terpilih-beasiswa-mahasiswa-strata-satu-s1-kurang-mampu-31Mar23.pdf": {
+          "type": "-",
+          "size": 28884,
+          "lmtime": 1680199782211.9314,
+          "modified": false
+        },
+        "terpilih-beasiswa-mahasiswa-strata-tiga-s3-tenaga-pengajar-dosen-06Apr23.pdf": {
+          "type": "-",
+          "size": 28884,
+          "lmtime": 0,
+          "modified": false
+        },
+        "terpilih-beasiswa-mahasiswa-strata-tiga-s3-tenaga-pengajar-dosen-dalam-negeri-07Jul23.pdf": {
+          "type": "-",
+          "size": 29076,
+          "lmtime": 1688728319179.1445,
+          "modified": false
+        }
+      },
+      "uploads": {
+        ".htaccess": {
+          "type": "-",
+          "size": 116,
+          "lmtime": 0,
+          "modified": false
+        },
+        "0022a-screenshot-2022-11-06-200615.jpg": {
+          "type": "-",
+          "size": 24831,
+          "lmtime": 0,
+          "modified": false
+        },
+        "05f91-85c72-5ba37-contoh-rencana-penggunaan-dana.xlsx": {
+          "type": "-",
+          "size": 15805,
+          "lmtime": 0,
+          "modified": false
+        },
+        "1505073107900003-bukti_lolos.docx": {
+          "type": "-",
+          "size": 47808,
+          "lmtime": 0,
+          "modified": false
+        },
+        "1505073107900003-bukti_pendaftaran.docx": {
+          "type": "-",
+          "size": 105027,
+          "lmtime": 0,
+          "modified": false
+        },
+        "1571012203890001-instrumen_verifikasi.docx": {
+          "type": "-",
+          "size": 141961,
+          "lmtime": 0,
+          "modified": false
+        },
+        "1571072903860041-bukti_lolos.docx": {
+          "type": "-",
+          "size": 60501,
+          "lmtime": 0,
+          "modified": false
+        },
+        "1571072903860041-bukti_pendaftaran.docx": {
+          "type": "-",
+          "size": 149470,
+          "lmtime": 1688690334071.6553,
+          "modified": false
+        },
+        "1571072903860041-instrumen_verifikasi.docx": {
+          "type": "-",
+          "size": 79905,
+          "lmtime": 0,
+          "modified": false
+        },
+        "1571072903860042-instrumen_verifikasi.docx": {
+          "type": "-",
+          "size": 79821,
+          "lmtime": 0,
+          "modified": false
+        },
+        "1571086106990021-bukti_pendaftaran.docx": {
+          "type": "-",
+          "size": 44551,
+          "lmtime": 0,
+          "modified": false
+        },
+        "1c290-c0763-8ada5-740c9-surat-pernyataan-tidak-menerima-bantuan-beasiswa.docx": {
+          "type": "-",
+          "size": 22257,
+          "lmtime": 0,
+          "modified": false
+        },
+        "25489-f1df5-tanda_bukti_navi.docx": {
+          "type": "-",
+          "size": 57033,
+          "lmtime": 0,
+          "modified": false
+        },
+        "2dac9-surat-permohonan-bantuan-beasiswa.docx": {
+          "type": "-",
+          "size": 30958,
+          "lmtime": 0,
+          "modified": false
+        },
+        "2fae4-1645875094-20210708-beasiswajpg.jpg": {
+          "type": "-",
+          "size": 40138,
+          "lmtime": 0,
+          "modified": false
+        },
+        "4efe7-kepgub-beasiswa-2018.pdf": {
+          "type": "-",
+          "size": 12058577,
+          "lmtime": 1661997319419.505,
+          "modified": false
+        },
+        "56751-954fc-pos-beasiswa-info.jpg": {
+          "type": "-",
+          "size": 113569,
+          "lmtime": 0,
+          "modified": false
+        },
+        "5d48f-tanda_bukti_kuning.docx": {
+          "type": "-",
+          "size": 27760,
+          "lmtime": 1661997237497.5405,
+          "modified": false
+        },
+        "61375-740c9-surat-pernyataan-tidak-menerima-bantuan-beasiswa.docx": {
+          "type": "-",
+          "size": 15005,
+          "lmtime": 1661997203951.5803,
+          "modified": false
+        },
+        "69666-fakta-integritas.doc": {
+          "type": "-",
+          "size": 41984,
+          "lmtime": 1661997271124.799,
+          "modified": false
+        },
+        "7143b-e0f18-tanda_bukti_orange.docx": {
+          "type": "-",
+          "size": 60829,
+          "lmtime": 0,
+          "modified": false
+        },
+        "7d1c9-screenshot-2022-11-06-200508.jpg": {
+          "type": "-",
+          "size": 21825,
+          "lmtime": 0,
+          "modified": false
+        },
+        "832ce-screenshot-2022-11-06-200551.jpg": {
+          "type": "-",
+          "size": 16275,
+          "lmtime": 0,
+          "modified": false
+        },
+        "8900d-tanda_bukti_abu.docx": {
+          "type": "-",
+          "size": 27761,
+          "lmtime": 1661997261249.0808,
+          "modified": false
+        },
+        "8bb11-d817c-7923f-sptspbl.docx": {
+          "type": "-",
+          "size": 14165,
+          "lmtime": 1661997331853.9668,
+          "modified": false
+        },
+        "9cb4e-e0f18-tanda_bukti_hijau.docx": {
+          "type": "-",
+          "size": 45175,
+          "lmtime": 0,
+          "modified": false
+        },
+        "aece0-info.jpeg": {
+          "type": "-",
+          "size": 248424,
+          "lmtime": 0,
+          "modified": false
+        },
+        "b5752-fakta-integritas.doc": {
+          "type": "-",
+          "size": 42496,
+          "lmtime": 1661997335089.7756,
+          "modified": false
+        },
+        "b5cd0-7923f-sptspbl.doc": {
+          "type": "-",
+          "size": 30720,
+          "lmtime": 1661997268845.4944,
+          "modified": false
+        },
+        "barcode": {
+          "1505073107900003.png": {
+            "type": "-",
+            "size": 2510,
+            "lmtime": 0,
+            "modified": false
+          },
+          "1571012203890001.png": {
+            "type": "-",
+            "size": 3050,
+            "lmtime": 0,
+            "modified": false
+          },
+          "1571072903860041.png": {
+            "type": "-",
+            "size": 3421,
+            "lmtime": 1688690334067.6553,
+            "modified": false
+          },
+          "1571072903860042.png": {
+            "type": "-",
+            "size": 3350,
+            "lmtime": 0,
+            "modified": false
+          },
+          "1571086106990021.png": {
+            "type": "-",
+            "size": 3084,
+            "lmtime": 0,
+            "modified": false
+          }
+        },
+        "bc9ba-d817c-7923f-sptspbl.docx": {
+          "type": "-",
+          "size": 14165,
+          "lmtime": 1661997241313.3586,
+          "modified": false
+        },
+        "brosur-beasiswa-kesra-2023.jpg": {
+          "type": "-",
+          "size": 17109230,
+          "lmtime": 0,
+          "modified": false
+        },
+        "c6cfa-06334-fakta-integritas.doc": {
+          "type": "-",
+          "size": 41984,
+          "lmtime": 1661997211749.3218,
+          "modified": false
+        },
+        "c6de4-surat-pertanggung-jawaban-mutlak.docx": {
+          "type": "-",
+          "size": 26356,
+          "lmtime": 0,
+          "modified": false
+        },
+        "cbdeb-tanda_bukti_biru.docx": {
+          "type": "-",
+          "size": 27779,
+          "lmtime": 1661997216271.975,
+          "modified": false
+        },
+        "cde25-dd322-0426f-06334-fakta-integritas.doc": {
+          "type": "-",
+          "size": 51712,
+          "lmtime": 0,
+          "modified": false
+        },
+        "de44f-screenshot-2022-11-06-200316.jpg": {
+          "type": "-",
+          "size": 24474,
+          "lmtime": 0,
+          "modified": false
+        },
+        "de6c9-f1df5-tanda_bukti_merah.docx": {
+          "type": "-",
+          "size": 45215,
+          "lmtime": 0,
+          "modified": false
+        },
+        "dokumen": {},
+        "ec87a-fakta-integritas.doc": {
+          "type": "-",
+          "size": 41984,
+          "lmtime": 1661997303542.0396,
+          "modified": false
+        },
+        "foto": {},
+        "instrumen_penilaian_tahap1.docx": {
+          "type": "-",
+          "size": 138922,
+          "lmtime": 0,
+          "modified": false
+        },
+        "logo.jpg": {
+          "type": "-",
+          "size": 291817,
+          "lmtime": 1661997214654.2263,
+          "modified": false
+        },
+        "slider": {},
+        "tanda_bukti_pendaftaran.docx": {
+          "type": "-",
+          "size": 84870,
+          "lmtime": 0,
+          "modified": false
+        }
+      },
+      "vendor": {}
+    },
+    "ssl": {},
+    "tmp": {},
+    "www": {
+      "type": "l",
+      "size": 11,
+      "lmtime": 0,
+      "modified": false
+    }
+  },
+  "$version": 1
+}

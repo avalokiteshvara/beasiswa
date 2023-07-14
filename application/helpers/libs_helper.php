@@ -334,6 +334,17 @@ function slugify($text)
     return $text;
 }
 
+function unslugify($text)
+{
+    // replace - with space
+    $text = str_replace('-', ' ', $text);
+
+    // capitalize each word
+    $text = ucwords($text);
+
+    return $text;
+}
+
 //https://www.geeksforgeeks.org/generating-otp-one-time-password-in-php/
 function generateNumericOTP($n = 10)
 {

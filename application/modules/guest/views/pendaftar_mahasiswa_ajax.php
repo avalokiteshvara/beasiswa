@@ -89,6 +89,7 @@
                <th>Akreditasi</th>
                <th>Semester</th>
                <th>IPK</th>
+               <th>Sertifikat</th>
                <th>Dokumen</th>
                <!-- <th>Status</th> -->
                <!--<th>Status Tahap Akhir</th>-->
@@ -126,6 +127,10 @@
                            <div class="mb-3 form-floating">
                               <input type="text" id="nik" class="form-control" readonly>
                               <label for="nik" class="form-label">NIK</label>
+                           </div>
+                           <div class="mb-3 form-floating">
+                              <input type="text" id="nokk" class="form-control" readonly>
+                              <label for="nokk" class="form-label">No. Kartu Keluarga</label>
                            </div>
 
                            <div class="mb-3 form-floating">
@@ -362,7 +367,10 @@
             "data": "semester"
          },
          {
-            "data": "ip_semester"
+            "data": "ip_semester" //10
+         },
+         {
+            "data": "bobot" // 11
          },
          {
             "data": "dokumen"
@@ -373,7 +381,28 @@
             "render": function(data, type, row) {
                return '<a href="#" class="detail" id="' + row['nik'] + '" onclick="show_detail(\'' + row['nik'] + '\')">' + data + '</a>';
             },
-            "targets": 0
+            "targets": 0,
+            "orderable": false
+         },
+         {
+            "targets": 1,
+            "orderable": false
+         },
+         {
+            "targets": 2,
+            "orderable": false
+         },
+         {
+            "targets": 3,
+            "orderable": false
+         },
+         {
+            "targets": 4,
+            "orderable": false
+         },
+         {
+            "targets": 5,
+            "orderable": false
          },
          {
 
@@ -387,7 +416,39 @@
 
             },
             "targets": 6,
-            "searchable": false
+            "searchable": false,
+            "orderable": false
+         },
+         {
+            "targets": 7,
+            "orderable": false
+         },
+         {
+            "targets": 8,
+            "orderable": false
+         },
+         {
+            "targets": 9,
+            "orderable": false
+         },
+         {
+            "targets": 10,
+            "orderable": false
+         },
+         {
+            "render": function(data, type, row) {
+               if (data == 3) {
+                  return '<span class="badge bg-warning text-dark">NASIONAL</span>';
+               } else if (data == 4) {
+                  return '<span class="badge bg-success text-white">INTERNASIONAL</span>';
+               } else {
+                  return '<span class="badge bg-secondary text-white">TIDAK ADA</span>';
+               }
+
+            },
+            "targets": 11,
+            "searchable": false,
+            "orderable": false
          },
          {
             "render": function(data, type, row) {
@@ -403,7 +464,7 @@
                }
 
             },
-            "targets": 11,
+            "targets": 12,
             "searchable": false
          }
 
@@ -444,15 +505,9 @@
 
       jenis_jurusan.addEventListener("change", function() {
          Cookies.set("filter", jenis_jurusan.value);
-         datatable.fnDraw(false);
+         datatable.fnDraw(true);
       });
    });
-
-
-   
-
-
-
 
    $('#example')
       .on('processing.dt', function(e, settings, processing) {

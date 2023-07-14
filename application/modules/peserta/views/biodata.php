@@ -26,7 +26,7 @@
 
  <!-- <form action="<?php echo site_url('peserta/update_biodata') ?>" method="post" enctype="multipart/form-data" class="row g-3"> -->
 
- <form action="<?php echo site_url('peserta/update_biodata') ?>" method="post" enctype="multipart/form-data">
+ <form id="form-biodata" action="<?php echo site_url('peserta/update_biodata') ?>" method="post" enctype="multipart/form-data">
 
    <div class="card border-primary shadow">
      <div class="card-header bg-primary text-white mb-3">
@@ -37,40 +37,87 @@
 
        <div class="mb-3 mt-2">
          <label for="nik" class="form-label">NIK (Nomor Induk kependudukan)</label>
-         <input type="text" class="form-control" name="nik" placeholder="NIK (Nomor Induk Kependudukan)" value="<?php echo $biodata['nik'] ?>" required>
+         <input type="text" class="form-control" name="nik" placeholder="NIK (Nomor Induk Kependudukan)" value="<?php echo $biodata['nik'] ?>" data-validation="required">
+       </div>
+
+       <div class="mb-3 mt-2">
+         <label for="nokk" class="form-label">No. Kartu Keluarga</label>
+         <input type="text" class="form-control" name="nokk" placeholder="No. Kartu Keluarga" value="<?php echo $biodata['nokk'] ?>" data-validation="required">
        </div>
 
        <div class="mb-3">
          <label for="exampleInputEmail1" class="form-label">Nama lengkap</label>
-         <input type="text" class="form-control" name="nama_lengkap" placeholder="Nama lengkap" value="<?php echo $biodata['nama_lengkap'] ?>" required>
+         <input type="text" class="form-control" name="nama_lengkap" placeholder="Nama lengkap" value="<?php echo $biodata['nama_lengkap'] ?>" data-validation="required">
        </div>
 
        <?php if ($biodata['level_penerima'] === 'dosen') { ?>
-         <div class="mb-3">
+         <div class="form-group mb-3">
            <label for="nidn" class="form-label">NIDN</label>
-           <input type="text" name="nidn" class="form-control" placeholder="" tabindex="1" value="<?php echo $biodata['nidn'] ?>" readonly>
+           <div class="input-group">
+             <input type="text" name="nidn" id="nidn-input" class="form-control" placeholder="" tabindex="1" value="<?php echo $biodata['nidn'] ?>" data-validation="required">
+             <div class="input-group-append">
+               <button class="btn btn-success" id="submit-button" type="button">Cek NIDN</button>
+             </div>
+           </div>
          </div>
+
+         <script>
+           $(document).ready(function() {
+             // Add click event listener to the submit button
+             $('#submit-button').click(function() {
+               // Get the NIDN value
+               const nidn = $('#nidn-input').val();
+
+               // Send the AJAX request
+               $.ajax({
+                 url: '<?php echo site_url('api/cek-nidn/') ?>' + nidn,
+                 type: 'GET',
+
+                 contentType: 'application/json',
+                 success: function(response) {
+                   // Handle the response as needed
+                   console.log(response);
+                   if (response.status === 'valid') {
+
+                     $('#lembaga-kerja-input').val(response.pt_dinas);
+                     $('#prodi_kerja-input').val(response.prodi_dinas);
+
+                     swal({
+                       title: 'Berhasil',
+                       text: 'NIDN Berhasil diverifikasi',
+                       type: 'success',
+                       confirmButtonText: 'Ok'
+                     });
+                   }
+                 },
+                 error: function(xhr, status, error) {
+                   console.error('Request failed. Status:', status);
+                 }
+               });
+             });
+           });
+         </script>
 
          <div class="mb-3">
            <label for="lembaga_kerja" class="form-label">Perguruan Tinggi</label>
-           <input type="text" name="lembaga_kerja" class="form-control" placeholder="" tabindex="1" value="<?php echo $biodata['lembaga_kerja'] ?>" readonly>
+           <input type="text" name="lembaga_kerja" id="lembaga-kerja-input" class="form-control" placeholder="" tabindex="1" value="<?php echo $biodata['lembaga_kerja'] ?>" readonly>
          </div>
 
          <div class="mb-3">
            <label for="prodi_kerja" class="form-label">Program Studi</label>
-           <input type="text" name="prodi_kerja" class="form-control" placeholder="" tabindex="1" value="<?php echo $biodata['prodi_kerja'] ?>" readonly>
+           <input type="text" name="prodi_kerja" id="prodi_kerja-input" class="form-control" placeholder="" tabindex="1" value="<?php echo $biodata['prodi_kerja'] ?>" readonly>
          </div>
 
        <?php } ?>
 
        <div class="mb-3">
          <label for="email" class="form-label">Email</label>
-         <input type="email" class="form-control" name="email" placeholder="Alamat Email" value="<?php echo $biodata['email'] ?>" required>
+         <input type="email" class="form-control" name="email" placeholder="Alamat Email" value="<?php echo $biodata['email'] ?>" data-validation="required">
        </div>
 
        <div class="mb-3">
          <label for="no_hp" class="form-label">No Handphone</label>
-         <input type="text" class="form-control" name="no_hp" placeholder="No Handphone" value="<?php echo $biodata['no_hp'] ?>" required>
+         <input type="text" class="form-control" name="no_hp" placeholder="No Handphone" value="<?php echo $biodata['no_hp'] ?>" data-validation="required">
        </div>
 
        <!-- <div class="mb-3">
@@ -154,11 +201,11 @@
        <div class="row mt-2">
          <div class="col-md-6">
            <label for="nama_lembaga" class="form-label">Perguruan Tinggi</label>
-           <input type="text" class="form-control" name="nama_lembaga" placeholder="Perguruan Tinggi" value="<?php echo $biodata['nama_lembaga'] ?>" required>
+           <input type="text" class="form-control" name="nama_lembaga" placeholder="Perguruan Tinggi" value="<?php echo $biodata['nama_lembaga'] ?>" data-validation="required">
          </div>
          <div class="col-md-6">
            <label for="program_studi" class="form-label">Program Studi</label>
-           <input type="text" class="form-control" name="program_studi" placeholder="Program Studi" value="<?php echo $biodata['program_studi'] ?>" required>
+           <input type="text" class="form-control" name="program_studi" placeholder="Program Studi" value="<?php echo $biodata['program_studi'] ?>" data-validation="required">
          </div>
        </div>
 
@@ -178,7 +225,7 @@
              <?php $akreditasi = explode(',', $biodata['akreditasi_prog_studi']);
               foreach ($akreditasi as $akr) { ?>
                <option <?php echo $biodata['akreditasi'] === $akr ? 'selected' : '' ?> value="<?php echo $akr; ?>"><?php echo $akr; ?></option>
-             <?php   } ?>
+             <?php } ?>
            </select>
          </div>
        </div>
@@ -192,7 +239,7 @@
              <?php $semester = explode(',', $biodata['semester_kategori']);
               foreach ($semester as $smt) { ?>
                <option <?php echo $biodata['semester'] === $smt ? 'selected' : '' ?> value="<?php echo $smt; ?>"><?php echo ucfirst(terbilang($smt)); ?></option>
-             <?php   } ?>
+             <?php } ?>
            </select>
          </div>
 
@@ -205,7 +252,7 @@
              <input type="text" name="ip_semester" value="<?php echo str_replace('.', ',', $biodata['ip_semester']) ?>" class="form-control" placeholder="Indeks Prestasi Kumulatif (IPK)" tabindex="6" value="" data-validation="number" data-validation-allowing="range[1.0;4.0],float" data-validation-decimal-separator="," data-validation-error-msg="Nilai IPK tidak valid" data-validation-help="pisahkan desimal dengan koma (',')">
              <p class="help-block"><?php echo "* IPK minimal untuk beasiswa ini adalah " . $ip_minimal[0] . " untuk eksakta dan " . $ip_minimal[1] . " untuk non eksakta , namun jika anda memiliki prestasi non akademik, anda dapat memasukkan nilai dibawah itu" ?></p>
            <?php } else { ?>
-             <input type="text" name="ip_semester" value="<?php echo str_replace('.', ',', $biodata['ip_semester']) ?>" class="form-control" placeholder="Indeks Prestasi Kumulatif (IPK)" tabindex="6" value="" data-validation="number" data-validation-depends-on="jenis_jurusan" data-validation-depends-on-value="eksakta, non_eksakta" data-validation-allowing="range[<?php echo $ip_minimal[0] ?> ;4.0],float" data-validation-decimal-separator="," data-validation-error-msg="Nilai IPK tidak valid atau dibawah ketentuan" data-validation-help="pisahkan desimal dengan koma (',')">
+             <input type="text" name="ip_semester" value="<?php echo str_replace('.', ',', $biodata['ip_semester']) ?>" class="form-control" placeholder="Indeks Prestasi Kumulatif (IPK)" tabindex="6" value="" data-validation="number" data-validation-depends-on="jenis_jurusan" data-validation-depends-on-value="eksakta, non_eksakta" data-validation-allowing="range[<?php echo $ip_minimal[0] ?> ;4.0],float" data-validation-decimal-separator="," data-validation-error-msg="Format Nilai IPK tidak valid atau dibawah ketentuan" data-validation-help="pisahkan desimal dengan koma (',')">
              <p class="help-block"><?php echo "* IPK minimal untuk beasiswa ini adalah " . $ip_minimal[0] . " untuk eksakta dan " . $ip_minimal[1] . " untuk non eksakta" ?></p>
              <script>
                // Ambil elemen input yang akan dimodifikasi berdasarkan nama
@@ -290,8 +337,75 @@
      imageRatioNotAccepted: 'Rasio gambar tidak diterima'
    };
 
+   var inputs = document.querySelectorAll("#form-biodata input");
+   for (var i = 0; i < inputs.length; i++) {
+     inputs[i].addEventListener("keydown", function(event) {
+       if (event.keyCode === 13) { // Check if Enter key is pressed
+         event.preventDefault(); // Mencegah aksi default (submit form)
+       }
+     });
+   }
+
    $.validate({
      language: myLanguage,
-     modules: 'date'
+     modules: 'date',
+     scrollToTopOnError: true,
+     onValidate: function($f) {
+
+       console.log('about to validate form ' + $f.attr('id'));
+
+       var $callbackInput = $('#callback');
+       if ($callbackInput.val() == 1) {
+         return {
+           element: $callbackInput,
+           message: 'This validation was made in a callback'
+         };
+       }
+     },
+     onError: function($form) {
+       // tampilkan pesan error pada elemen dengan kelas "error-message"
+       // $('.error-message').text('Form tidak valid. Periksa kembali isian Anda.');
+       //  var errorElements = document.getElementsByClassName("form-error");
+       //  if (errorElements.length > 0) {
+       //    var firstErrorElement = errorElements[0];
+       //    firstErrorElement.scrollIntoView();
+       //  }
+       
+       swal({
+         title: 'Ada kesalahan!',
+         text: 'Form tidak valid. Periksa kembali isian Anda.',
+         icon: 'error',
+         confirmButtonText: 'Ok',
+         allowEscapeKey: true,
+         allowOutsideClick: true,
+       });
+     }
    });
+
+
+
+   //  var myForm = document.getElementById('form-biodata');
+
+   //  var inputElements = myForm.getElementsByTagName('input');
+   //  var errorCount = 0;
+   //  for (var i = 0; i < inputElements.length; i++) {
+   //    inputElements[i].addEventListener('blur', function() {
+
+   //      var formElements = myForm.querySelectorAll('*');
+   //      console.log("Class pada elemen dalam formulir:");
+   //      formElements.forEach(function(element) {
+   //        var classList = element.classList;
+   //        if (classList.contains('form-error')) {
+   //          errorCount++;
+   //        }
+   //      });
+
+
+   //      console.log("Jumlah kesalahan:", errorCount);
+   //      if (errorCount > 0) {
+   //        alert("Ada kesalahan pada input dalam formulir");
+   //      }
+
+   //    });
+   //  }
  </script>

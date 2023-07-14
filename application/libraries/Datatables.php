@@ -158,6 +158,14 @@ class Datatables
         return $this;
     }
 
+
+    public function order_by($column, $type = 'ASC')
+    {
+        $this->order_by[] = array($column, $type);
+        $this->ci->db->order_by($column, $type);
+        return $this;
+    }
+
     /**
      * Generates the WHERE IN portion of the query
      *
@@ -324,9 +332,9 @@ class Datatables
 
         $columns = array_values(array_diff($this->columns, $this->unset_columns));
 
-        
+
         for ($i = 0; $i < count($mColArray); $i++) {
-            
+
             if (!empty($search['value'])) {
                 $sSearch = $this->ci->db->escape_like_str(trim($search['value']));
                 if ($mColArray[$i]['searchable'] == 'true' && !array_key_exists($mColArray[$i]['data'], $this->add_columns)) {

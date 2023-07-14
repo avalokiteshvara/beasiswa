@@ -52,9 +52,6 @@ class Verifikator extends MX_Controller
         instrumen_verifikasi($pendaftar_id, true);
     }
 
-
-
-
     public function export_data()
     {
         $ctlObj = modules::load('export/export/')->query($this->uri->segment(3), $this->tahun_aktif);
@@ -70,10 +67,9 @@ class Verifikator extends MX_Controller
         }
 
         $kategori = $kat->row_array();
-        $this->breadcrumbs->push('Dashboard', '/guest');
-        $this->breadcrumbs->push('Kategori Beasiswa', '/guest/kategori-beasiswa');
-        $this->breadcrumbs->push($kategori['nama'], '/guest/pendaftar/' . $slug);
-
+        $this->breadcrumbs->push('Dashboard', '/verifikator');
+        $this->breadcrumbs->push('Kategori Beasiswa', '/verifikator/kategori-beasiswa');
+        $this->breadcrumbs->push($kategori['nama'], '/verifikator/pendaftar/' . $slug);
 
         if ($kategori['level_penerima'] === 'pelajar') {
             $data['page_name']  = 'pendaftar_pelajar_ajax';
@@ -97,7 +93,7 @@ class Verifikator extends MX_Controller
         $dok .= " <tbody>";
         $kategori      = $this->db->get_where('kategori', array('slug' => $slug))->row_array();
         $jenis_dokumen = explode(',', $kategori['set_jenis_dokumen']);
-        $i = 1;
+        $i             = 1;
         foreach ($jenis_dokumen as $jd) {
 
             $jenis_dokumen = jenis_dokumen($jd);
@@ -106,7 +102,7 @@ class Verifikator extends MX_Controller
                 continue;
             }
 
-            $dok .= " <tr id=\"tr_" .  $i . "\" data-bs-toggle=\"collapse\" data-bs-target=\"#r" . $i . "\">";
+            $dok .= " <tr id=\"tr_" . $i . "\" data-bs-toggle=\"collapse\" data-bs-target=\"#r" . $i . "\">";
             $dok .= "   <td>" . $jenis_dokumen . "</td>";
 
             $cek = $this->db->get_where('dokumen_pendaftar', array('jenis_dokumen_id' => $jd, 'pendaftar_id' => $pendaftar_id));
@@ -166,8 +162,6 @@ class Verifikator extends MX_Controller
         echo $dok;
     }
 
-
-
     public function kategori_beasiswa()
     {
         try {
@@ -194,7 +188,7 @@ class Verifikator extends MX_Controller
                 $count_pendaftar = $this->db->count_all_results('pendaftar');
 
                 //pendaftar tahun ini
-                return  '<a href="' . site_url('verifikator/pendaftar_ajax/' . $row->slug) . '">' . $count_pendaftar . ' Pendaftar </a>';
+                return '<a href="' . site_url('verifikator/pendaftar_ajax/' . $row->slug) . '">' . $count_pendaftar . ' Pendaftar </a>';
             });
 
             $crud->unset_add();
@@ -242,20 +236,30 @@ class Verifikator extends MX_Controller
         $user_id = $this->session->userdata('user_id');
 
         if (!empty($_POST['alasan'])) {
-            $this->db->where('id', $dokumen_pendaftar_id);
-            $this->db->update(
-                'dokumen_pendaftar',
-                array(
-                    'verifikasi' => $verifikasi,
-                    'verifikator_id' => $user_id,
-                    'alasan' => $this->input->post('alasan')
-                )
-            );
-        } else {
-            $this->db->where('id', $dokumen_pendaftar_id);
-            $this->db->update('dokumen_pendaftar', array('verifikasi' => $verifikasi, 'verifikator_id' => $user_id));
-        }
 
+            $updateArr = array(
+                'verifikasi'     => $verifikasi,
+                'verifikator_id' => $user_id,
+                'alasan'         => $this->input->post('alasan'),
+            );
+
+            if ($verifikasi === 'ditolak') {
+                $updateArr = array_merge($updateArr, array('bobot' => '0'));
+            }
+
+            $this->db->where('id', $dokumen_pendaftar_id);
+            $this->db->update('dokumen_pendaftar', $updateArr);
+        } else {
+
+            $updateArr = array('verifikasi' => $verifikasi, 'verifikator_id' => $user_id);
+
+            if ($verifikasi === 'ditolak') {
+                $updateArr = array_merge($updateArr, array('bobot' => '0'));
+            }
+
+            $this->db->where('id', $dokumen_pendaftar_id);
+            $this->db->update('dokumen_pendaftar', $updateArr);
+        }
 
         $this->db->select('a.alasan,b.no_hp as no_hp,c.nama AS nama_dok');
         $this->db->join('pendaftar b', 'a.pendaftar_id = b.id', 'left');
@@ -263,10 +267,9 @@ class Verifikator extends MX_Controller
         $this->db->where('a.id', $dokumen_pendaftar_id);
         $pendaftar = $this->db->get('dokumen_pendaftar a')->row_array();
 
-
-        $no_hp = $pendaftar['no_hp'];
+        $no_hp    = $pendaftar['no_hp'];
         $nama_dok = $pendaftar['nama_dok'];
-        $alasan = $pendaftar['alasan'];
+        $alasan   = $pendaftar['alasan'];
 
         if ($verifikasi === 'diterima') {
             // $message = "Berkas : " . $nama_dok . " berhasil diverifikasi";
