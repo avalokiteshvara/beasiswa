@@ -62,6 +62,8 @@
         .has-error.radio-inline label {
             color: #a94442;
         }
+
+
     </style>
 
     <script src="<?php echo site_url('assets/manage/js/base64.js') ?>"></script>
@@ -225,25 +227,41 @@
     </aside><!-- End Sidebar-->
 
     <main id="main" class="main">
-        <section class="section">
-            <div class="row mt-2">
-                <div class="col-lg-12">
-                    <?php if (isset($output)) {
-                        echo $output;
-                    } else {
-                        include $page_name . ".php";
-                    } ?>
-                </div>
-        </section>
+        <?php if ($penerima_sebelumnya > 0) { ?>
+            <fieldset class="blocked-fieldset">
+                <legend>Form terblokir: Anda telah menerima beasiswa sebelumnya</legend>
+            <?php } ?>
+            <section class="section">
+                <div class="row mt-2">
+                    <div class="col-lg-12">
+
+                        <?php if ($notifikasi['tampilkan'] === 'Y') { ?>
+                            <div class="alert alert-danger mt-2" role="alert">
+                                <b><?php echo $notifikasi['isi']; ?></b>
+                            </div>
+                        <?php } ?>
+
+                        <?php if (isset($output)) {
+                            echo $output;
+                        } else {
+                            include $page_name . ".php";
+                        } ?>
+                    </div>
+            </section>
+            <?php if ($penerima_sebelumnya > 0) { ?>
+            </fieldset>
+        <?php } ?>
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
-       <footer id="footer" class="footer">
+    <footer id="footer" class="footer">
         <div class="copyright">
-                <font size="2"><p align="center">Hak Cipta &copy; 2023.<span>
+            <font size="2">
+                <p align="center">Hak Cipta &copy; 2023.<span>
                         <a href="https://kesra.jambiprov.go.id/">Biro Kesejahteraan Masyarakat Provinsi Jambi.</a> All right reserved.
-                    </span></font></br>
-                    <font size="2">Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>. Developed and Supported by <a href="https://disdik.jambiprov.go.id/">BTIKP Dinas Pendidikan Provinsi Jambi</a></font>
+                    </span>
+            </font></br>
+            <font size="2">Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>. Developed and Supported by <a href="https://disdik.jambiprov.go.id/">BTIKP Dinas Pendidikan Provinsi Jambi</a></font>
             </p>
         </div>
         <div class="credits">
@@ -251,7 +269,7 @@
             <!-- You can delete the links only if you purchased the pro version. -->
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-           
+
         </div>
     </footer><!-- End Footer -->
 

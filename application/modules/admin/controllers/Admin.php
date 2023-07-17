@@ -465,7 +465,6 @@ class Admin extends MX_Controller
             $crud->display_as('strict_ip_minimal', 'Keharusan IPK Minimal ?');
             $crud->display_as('set_jenis_dokumen', 'Dokumen yang dapat diunggah');
 
-
             $crud->display_as('sort_num', 'Urutan');
 
             $crud->required_fields(
@@ -478,7 +477,7 @@ class Admin extends MX_Controller
                 'jml_penerima'
             );
 
-            $crud->columns('nama', 'tgl_buka', 'tgl_tutup', 'jml_penerima', 'status', 'penerima_sebelumnya', 'pendaftar');
+            $crud->columns('nama', 'tgl_buka', 'tgl_tutup', 'jml_penerima', 'status' /*, 'penerima_sebelumnya'*/, 'pendaftar');
 
             $crud->callback_column('pendaftar', function ($value, $row) {
                 $this->db->where('kategori_id', $row->id);
@@ -538,11 +537,10 @@ class Admin extends MX_Controller
                 //return '<a href="' . site_url('admin/qry_validation/' . $row->id) .'">Manage</a>';
             });
 
-
             $sort_order = array();
 
-            $sort_order['ipk'] = 'IPK';
-            $sort_order['bobot'] = 'Sertifikat Prestasi'; //bobot sertifikat
+            $sort_order['ipk']        = 'IPK';
+            $sort_order['bobot']      = 'Sertifikat Prestasi'; //bobot sertifikat
             $sort_order['created_at'] = 'Tanggal daftar';
 
             $crud->field_type('query_sort_order', 'multiselect', $sort_order);
@@ -574,7 +572,17 @@ class Admin extends MX_Controller
             $crud->set_field_upload('template_lulus', 'uploads');
             $crud->set_field_upload('logo', 'uploads');
 
-            $extra  = array('page_title' => 'Kategori beasiswa');
+            $add_js = "var newButton = document.createElement('a');";
+            $add_js .= "newButton.setAttribute('href', '" . site_url('admin/penerima-sebelumnya') . "');";
+            $add_js .= "newButton.setAttribute('title', 'Penerima Sebelumnya');";
+            $add_js .= "newButton.classList.add('new-button');";
+            $add_js .= "newButton.innerHTML = '<div class=\"fbutton\"><div><span class=\"graduated\">Penerima sebelumnya</span></div></div>';";
+
+            // Menambahkan tombol baru setelah elemen dengan kelas 'tDiv2'
+            $add_js .= "var tDiv2 = document.querySelector('.tDiv2');";
+            $add_js .= "tDiv2.parentNode.insertBefore(newButton, tDiv2.nextSibling);";
+
+            $extra  = array('page_title' => 'Kategori beasiswa', 'add_js' => $add_js);
             $output = $crud->render();
 
             $output = array_merge((array) $output, $extra);
@@ -684,6 +692,8 @@ class Admin extends MX_Controller
             $crud->set_field_upload('file_template', 'uploads');
             $crud->display_as('template', 'File Template');
             $crud->display_as('dok_prestasi', 'Dokumen Prestasi ?');
+
+            $crud->required_fields('nama', 'dok_prestasi');
 
             $crud->callback_column('template', function ($value, $row) {
                 if (empty($row->file_template)) {
@@ -1211,5 +1221,133 @@ class Admin extends MX_Controller
         $dok .= "</table>";
 
         echo $dok;
+    }
+
+    public function penerima_sebelumnya()
+    {
+        try {
+            $this->load->library('grocery_CRUD');
+            $crud = new Grocery_CRUD();
+
+            $crud->set_table('penerima_sebelumnya');
+            $crud->set_subject('Data penerima sebelumnya');
+
+            $this->breadcrumbs->push('Dashboard', '/admin');
+            $this->breadcrumbs->push('Kategori Beasiswa', '/admin/kategori-beasiswa');
+            $this->breadcrumbs->push('Penerima sebelumnya', '/admin/penerima-sebelumnya');
+
+            $crud->display_as('nik', 'NIK');
+            $crud->display_as('kk', 'Kartu Keluarga');
+
+            $crud->columns('nik', 'kk', 'nama', 'alamat','kab_kota','tahun','jenis_beasiswa');
+
+            $crud->unset_delete();
+            // $crud->unset_add();
+
+            $crud->callback_column('nama', function ($value, $row) {
+                return ucwords($value);
+            });
+
+            $crud->callback_column('kab_kota', function ($value, $row) {
+                return strtoupper($value);
+            });
+
+            $add_js = "var newButton = document.createElement('a');";
+            $add_js .= "newButton.setAttribute('href', '" . site_url('admin/import-penerima-sebelumnya') . "');";
+            $add_js .= "newButton.setAttribute('title', 'Import Penerima Sebelumnya');";
+            $add_js .= "newButton.classList.add('new-button');";
+            $add_js .= "newButton.innerHTML = '<div class=\"fbutton\"><div><span class=\"import\">Import Penerima sebelumnya</span></div></div>';";
+
+            // Menambahkan tombol baru setelah elemen dengan kelas 'tDiv2'
+            $add_js .= "var tDiv2 = document.querySelector('.tDiv2');";
+            $add_js .= "tDiv2.parentNode.insertBefore(newButton, tDiv2.nextSibling);";
+            $add_js .= "tDiv2.classList.add(\"hidden\");";
+
+            $extra  = array('page_title' => 'Penerima sebelumnya', 'add_js' => $add_js);
+            $output = $crud->render();
+
+            $output = array_merge((array) $output, $extra);
+
+            $this->_page_output($output);
+        } catch (Exception $e) {
+            show_error($e->getMessage() . ' --- ' . $e->getTraceAsString());
+        }
+    }
+
+    public function import_penerima_sebelumnya()
+    {
+        if (!empty($_POST)) {
+
+            $config['upload_path']   = './uploads';
+            $config['allowed_types'] = 'xls|xlsx';
+            $config['encrypt_name']  = true;
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('userfile')) {
+                $this->alert->set('alert-danger', '<p class="text-danger">' . $this->upload->display_errors() . '</p>', true);
+            } else {
+
+                $extension = pathinfo($_FILES['userfile']['name'], PATHINFO_EXTENSION);
+
+                if ($extension == 'xlsx') {
+                    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+                } else {
+                    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+                }
+
+                $spreadsheet = $reader->load($_FILES['userfile']['tmp_name']);
+
+                $worksheets = $spreadsheet->getAllSheets();
+                // $data = [];
+
+                foreach ($worksheets as $worksheet) {
+                    $worksheetTitle = $worksheet->getTitle();
+                    $highestRow     = $worksheet->getHighestRow();
+
+                    // Baca data mulai dari baris ke-3
+                    for ($row = 3; $row <= $highestRow; $row++) {
+                        $nik    = $worksheet->getCell('B' . $row)->getValue();
+                        $nik = str_replace(" ", "", $nik);
+
+                        $status = $worksheet->getCell('H' . $row)->getValue();
+                        $status = strtoupper($status);
+                        $status = str_replace(" ", "", $status);
+
+                        if ($status === 'DITERIMA' && $nik !== '') {
+                            $set = array(
+                                'nik'            => $nik,
+                                'kk'             => $worksheet->getCell('C' . $row)->getValue(),
+                                'nama'           => $worksheet->getCell('D' . $row)->getValue(),
+                                'alamat'         => $worksheet->getCell('E' . $row)->getValue(),
+                                'kab_kota'       => $worksheet->getCell('F' . $row)->getValue(),
+                                'no_hp'          => $worksheet->getCell('G' . $row)->getValue(),
+                                'tahun'          => $worksheet->getCell('I' . $row)->getValue(),
+                                'jenis_beasiswa' => $worksheetTitle,
+                            );
+                        }
+
+                        $exclude_columns = array();
+                        $this->db->on_duplicate('penerima_sebelumnya', $set, $exclude_columns);
+                    }
+                }
+
+                $success   = $this->upload->data();
+                $file_name = $success['file_name'];
+
+                @unlink('./uploads/' . $file_name);
+                $this->alert->set('alert-success', 'Data berhasil dimasukkan', true);
+            }
+        }
+
+        $this->breadcrumbs->push('Dashboard', '/admin');
+        $this->breadcrumbs->push('Kategori Beasiswa', '/admin/kategori-beasiswa');
+        $this->breadcrumbs->push('Penerima sebelumnya', '/admin/penerima-sebelumnya');
+        $this->breadcrumbs->push('Import Penerima Sebelumnya', '/admin/import-penerima-sebelumnya');
+
+        $data['page_name']  = 'import_penerima_sebelumnya';
+        $data['page_title'] = 'Import Data Penerima Sebelumnya';
+
+        $this->_page_output($data);
     }
 }

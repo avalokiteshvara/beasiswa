@@ -13,7 +13,38 @@
     .custom-file-upload:hover {
         background-color: #ec971f;
     }
+
+    .blocked-fieldset {
+        border: none;
+        padding: 20px;
+        position: relative;
+
+    }
+
+    .blocked-fieldset::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Warna latar belakang semi-transparan */
+        z-index: 2;
+        /* Mengatur tumpukan elemen, memastikan elemen ini berada di atas elemen lain */
+    }
+
+    .blocked-fieldset legend {
+        position: relative;
+        color: red;
+        background-color: #333;
+        padding: 10px 20px;
+        z-index: 3;
+        /* Mengatur tumpukan elemen, memastikan elemen ini berada di atas elemen lain */
+    }
 </style>
+
+
 <div class="card mt-2">
     <div class="card-header">
         Dokumen
@@ -119,16 +150,16 @@
                             <td>
                                 <?php echo $statusBadge; ?>
                                 <?php if ($jd['verifikasi'] === 'ditolak') { ?>
-                                    <tr class="table-danger collapse" id="r<?php echo $i; ?>" data-bs-parent=".table">
-                                        <td colspan="4" class="link-danger text-center">Alasan penolakan: <?php echo $jd['alasan']; ?></td>
-                                    </tr>
-                                <?php } ?>
-                            </td>
+                        <tr class="table-danger " id="r<?php echo $i; ?>" data-bs-parent=".table">
+                            <td colspan="4" class="link-danger text-center">Alasan penolakan: <?php echo $jd['alasan']; ?></td>
                         </tr>
-                    <?php
+                    <?php } ?>
+                    </td>
+                    </tr>
+                <?php
                         $i++;
                     }
-                    ?>
+                ?>
                 </tbody>
             </table>
         </div>

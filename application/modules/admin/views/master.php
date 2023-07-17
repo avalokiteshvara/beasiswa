@@ -64,7 +64,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js" integrity="sha512-IOebNkvA/HZjMM7MxL0NYeLYEalloZ8ckak+NDtOViP7oiYzG5vn6WVXyrJDiJPhl4yRdmNAG49iuLmhkUdVsQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js" integrity="sha512-wT7uPE7tOP6w4o28u1DN775jYjHQApdBnib5Pho4RB0Pgd9y7eSkAV1BTqQydupYDB9GBhTcQQzyNMPMV3cAew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
+
     <!-- =======================================================
   * Template Name: NiceAdmin - v2.5.0
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -85,6 +85,27 @@
             cursor: pointer;
             cursor: hand;
         }
+
+        .flexigrid div.fbutton span.graduated {
+            background: url(https://img.icons8.com/external-others-cattaleeya-thongsriphong/20/external-graduated-back-to-school-color-line-others-cattaleeya-thongsriphong.png) no-repeat;
+            background-position: 0px 3px;
+            padding-left: 20px;
+        }
+
+        .flexigrid div.fbutton span.import {
+            background: url( https://img.icons8.com/fluency/20/import.png) no-repeat;
+            background-position: 0px 3px;
+            padding-left: 20px;
+        }
+
+        .strikethrough {
+            text-decoration: line-through;
+            color: red;
+        }
+
+        .hidden {
+            display: none;
+        }
     </style>
 
 
@@ -96,7 +117,7 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="<?php echo site_url('admin')?>" class="logo d-flex align-items-center">
+            <a href="<?php echo site_url('admin') ?>" class="logo d-flex align-items-center">
 
                 <span class="d-none d-lg-block"><?php echo strtoupper($this->session->userdata('user_username')) ?></span>
             </a>
@@ -369,6 +390,11 @@
     </script>
 
 
+    <script>
+        <?php if (isset($add_js)) {
+            echo $add_js;
+        } ?>
+    </script>
 
 
 

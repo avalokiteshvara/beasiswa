@@ -6,6 +6,7 @@
         <tr>
             <th style="border: 1px solid black; padding: 5px;">No.</th>
             <?php foreach ($fields as $field) { ?>
+                <?php if ($field == 'status_penerima_sebelumnya') continue; ?>
                 <th style="border: 1px solid black; padding: 5px;"><?php echo strtoupper(str_replace('_', ' ', $field)) ?></th>
             <?php } ?>
         </tr>
@@ -16,7 +17,12 @@
             <tr>
                 <td style="border: 1px solid black; padding: 5px;" align="center"><?php echo $i; ?></td>
                 <?php foreach ($fields as $field) { ?>
-                    <td style="border: 1px solid black; padding: 5px;"><?php echo $data->$field !== null ? nl2br($data->$field) : ''; ?></td>
+                    <?php if ($field == 'status_penerima_sebelumnya') continue; ?>
+                    <?php if ($data->status_penerima_sebelumnya == '1') { ?>
+                        <td style="text-decoration: line-through;border: 1px solid black; padding: 5px;"><?php echo $data->$field !== null ? nl2br($data->$field) : ''; ?></td>
+                    <?php } else { ?>
+                        <td style="border: 1px solid black; padding: 5px;"><?php echo $data->$field !== null ? nl2br($data->$field) : ''; ?></td>
+                    <?php } ?>
                 <?php } ?>
                 <?php $i++; ?>
             </tr>

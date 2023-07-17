@@ -78,6 +78,12 @@
             cursor: pointer;
             cursor: hand;
         }
+
+
+        .strikethrough {
+            text-decoration: line-through;
+            color: red;
+        }
     </style>
 </head>
 
@@ -89,7 +95,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
 
-                <span class="d-none d-lg-block"><?php echo strtoupper($this->session->userdata('user_username')) ?></span>
+                <span class="d-none d-lg-block"><i class="bi bi-person-bounding-box"></i> Hi, <?php echo strtoupper($this->session->userdata('user_username')) ?></span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
@@ -147,14 +153,14 @@
         <ul class="sidebar-nav" id="sidebar-nav">
             <li class="nav-item">
                 <a class="nav-link collapsed" href="<?php echo site_url('verifikator/index') ?>">
-                    <i class="bi bi-grid"></i>
+                    <i class="bi bi-sliders"></i>
                     <span>Dashboard</span>
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="<?php echo site_url('verifikator/kategori-beasiswa') ?>">
-                    <i class="bi bi-grid"></i>
-                    <span>Beasiswa</span>
+                    <i class="bi bi-mortarboard-fill"></i>
+                    <span>Beasiswa Dumisake (S1, S3)</span>
                 </a>
             </li>
         </ul>
@@ -195,9 +201,12 @@
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">
-            <p align="center">&copy;<strong><span>
-                        <font size="2"> Biro Kesra Provinsi Jambi. 2023
-                    </span></strong></font>
+            <font size="2">
+                <p align="center">Hak Cipta &copy; 2023.<span>
+                        Biro Kesra Prov. Jambi.</a> All right reserved.
+                    </span>
+            </font></br>
+            <font size="1">Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>. Developed & Supported by <a href="https://disdik.jambiprov.go.id/">BTIKP Disdik Prov. Jambi</a></font>
             </p>
         </div>
         <div class="credits">

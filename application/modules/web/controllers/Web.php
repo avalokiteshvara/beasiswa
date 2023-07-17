@@ -51,36 +51,45 @@ class Web extends CI_Controller
 
         $nik = $this->input->post('nik');
 
-        $this->db->select('a.nik,a.nama_lengkap,b.nama AS kategori,a.status,a.status_akhir');
-        $this->db->join('kategori b', 'a.kategori_id = b.id', 'left');
-        $cek = $this->db->get_where('pendaftar a', array('a.nik' => $nik));
 
-        if ($cek->num_rows() > 0) {
-            $pendaftar = $cek->row_array();
-            $status    = $pendaftar['status'];
-            if ($status === 'pending') {
-                echo json_encode(array('alert_class' => 'alert-info', 'msg' => 'Berkas anda sedang diproses'));
-            } elseif ($status === 'diterima') {
-                $status_akhir = $pendaftar['status_akhir'];
+        $cek_penerima_sebelumnya = $this->db->get_where('penerima_sebelumnya', array('nik' => $nik))->num_rows();
 
-                $msg = '<table>';
-                $msg .= '<tr><td>Nama</td><td>' . $pendaftar['nama_lengkap'] . '</td></tr>';
-                $msg .= '<tr><td>Kategori</td><td>' . $pendaftar['kategori'] . '</td></tr>';
-                $msg .= '<tr><td>Tahap Uji Bahan</td><td>' . strtoupper($status) . '</td></tr>';
-                $msg .= '<tr><td>Tahap Uji Akhir</td><td>' . strtoupper($status_akhir) . ' </td></tr>';
-                $msg .= '</table>';
-                echo json_encode(
-                    array(
-                        'alert_class' => 'alert-success',
-                        'msg'         => $msg,
-                    )
-                );
+        if($cek_penerima_sebelumnya > 0){
+            echo json_encode(array('alert_class' => 'alert-danger', 'msg' => '<strong>Anda penerima beasiswa sebelumnya! Berkas tidak akan diproses</strong>'));
+        }else{
+            $this->db->select('a.nik,a.nama_lengkap,b.nama AS kategori,a.status,a.status_akhir');
+            $this->db->join('kategori b', 'a.kategori_id = b.id', 'left');
+            $cek = $this->db->get_where('pendaftar a', array('a.nik' => $nik));
+    
+            if ($cek->num_rows() > 0) {
+                $pendaftar = $cek->row_array();
+                $status    = $pendaftar['status'];
+                if ($status === 'pending') {
+                    echo json_encode(array('alert_class' => 'alert-info', 'msg' => 'Berkas anda sedang diproses'));
+                } elseif ($status === 'diterima') {
+                    $status_akhir = $pendaftar['status_akhir'];
+    
+                    $msg = '<table>';
+                    $msg .= '<tr><td>Nama</td><td>' . $pendaftar['nama_lengkap'] . '</td></tr>';
+                    $msg .= '<tr><td>Kategori</td><td>' . $pendaftar['kategori'] . '</td></tr>';
+                    $msg .= '<tr><td>Tahap Uji Bahan</td><td>' . strtoupper($status) . '</td></tr>';
+                    $msg .= '<tr><td>Tahap Uji Akhir</td><td>' . strtoupper($status_akhir) . ' </td></tr>';
+                    $msg .= '</table>';
+                    echo json_encode(
+                        array(
+                            'alert_class' => 'alert-success',
+                            'msg'         => $msg,
+                        )
+                    );
+                } else {
+                    echo json_encode(array('alert_class' => 'alert-warning', 'msg' => '<strong>Maaf&nbsp;' . $pendaftar['nama_lengkap'] . '</strong>, Berkas anda dinyatakan <strong>TIDAK</strong> lolos uji bahan'));
+                }
             } else {
-                echo json_encode(array('alert_class' => 'alert-warning', 'msg' => '<strong>Maaf&nbsp;' . $pendaftar['nama_lengkap'] . '</strong>, Berkas anda dinyatakan <strong>TIDAK</strong> lolos uji bahan'));
+                echo json_encode(array('alert_class' => 'alert-danger', 'msg' => 'NIK tidak ditemukan! Mohon periksa kembali NIK yang anda masukkan'));
             }
-        } else {
-            echo json_encode(array('alert_class' => 'alert-danger', 'msg' => 'NIK tidak ditemukan! Mohon periksa kembali NIK yang anda masukkan'));
         }
+
+       
     }
 
 

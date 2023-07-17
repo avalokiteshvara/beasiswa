@@ -94,26 +94,33 @@ class Pendaftaran extends CI_Controller
             $this->alert->set('alert-danger', 'Anda telah menerima bantuan beasiswa tahun sebelumnya', true);
             return false;
         } else {
-            $cek = $this->db->get_where('pendaftar', array('nik' => $string));
+
+            $cek = $this->db->get_where('penerima_sebelumnya', array('nik' => $string));
             if ($cek->num_rows() > 0) {
-                $this->alert->set('alert-danger', 'NIK sudah terdaftar', true);
+                $this->alert->set('alert-danger', 'Anda telah menerima bantuan beasiswa sebelumnya', true);
                 return false;
             } else {
-
-                //remove dots..
-                $nik = preg_replace('#[^\pL\pN/-]+#', '', $string);
-                //dapatkan 4 digit pertama
-                $kode_wil = substr($nik, 0, 4);
-                
-                $nik_pendaftar = explode(",",get_settings('small-text', 'kode_kab_daftar'));
-                $nik_pendaftar = array_map('trim',$nik_pendaftar);   
-                
-
-                if (in_array($kode_wil, $nik_pendaftar)) {
-                    return true;
-                } else {
-                    $this->alert->set('alert-danger', 'Maaf NIK anda bukan kode wilayah di Provinsi Jambi', true);
+                $cek = $this->db->get_where('pendaftar', array('nik' => $string));
+                if ($cek->num_rows() > 0) {
+                    $this->alert->set('alert-danger', 'NIK sudah terdaftar', true);
                     return false;
+                } else {
+
+                    //remove dots..
+                    $nik = preg_replace('#[^\pL\pN/-]+#', '', $string);
+                    //dapatkan 4 digit pertama
+                    $kode_wil = substr($nik, 0, 4);
+
+                    $nik_pendaftar = explode(",", get_settings('small-text', 'kode_kab_daftar'));
+                    $nik_pendaftar = array_map('trim', $nik_pendaftar);
+
+
+                    if (in_array($kode_wil, $nik_pendaftar)) {
+                        return true;
+                    } else {
+                        $this->alert->set('alert-danger', 'Maaf NIK anda bukan kode wilayah di Provinsi Jambi', true);
+                        return false;
+                    }
                 }
             }
         }
@@ -131,7 +138,7 @@ class Pendaftaran extends CI_Controller
                     $nidn = $this->input->post('nidn');
                     $this->session->set_userdata(array('nidn' => $nidn));
 
-                    
+
                     $url = 'https://api-frontend.kemdikbud.go.id/hit/' . $nidn;
 
                     $ch = curl_init();
@@ -150,7 +157,7 @@ class Pendaftaran extends CI_Controller
 
                     $data = curl_exec($ch);
 
-                    curl_close($ch);                    
+                    curl_close($ch);
 
                     if (str_contains($data, 'NIDN')) {
                         $dataJson = json_decode($data); //decoding data JSON
@@ -176,8 +183,8 @@ class Pendaftaran extends CI_Controller
 
     public function index()
     {
-        
-        
+
+
         $this->load->library('recaptcha');
 
         $slug         = $this->uri->segment(3);
@@ -211,7 +218,7 @@ class Pendaftaran extends CI_Controller
                     }*/
 
                     break;
-                    
+
                 case 'daftar':
                     $captcha_answer = $this->input->post('g-recaptcha-response');
                     $response       = $this->recaptcha->verifyResponse($captcha_answer);

@@ -379,7 +379,12 @@
       "columnDefs": [{
             //<a href="#" class="detail" id="1671070911900008" onclick="show_detail('1671070911900008')">BELA RONALDOE</a>
             "render": function(data, type, row) {
-               return '<a href="#" class="detail" id="' + row['nik'] + '" onclick="show_detail(\'' + row['nik'] + '\')">' + data + '</a>';
+               // return '<a href="#" class="detail" id="' + row['nik'] + '" onclick="show_detail(\'' + row['nik'] + '\')">' + data + '</a>';
+               if(row['status_penerima_sebelumnya'] > 0){
+                  return '<a href="#" class="detail" id="' + row['nik'] + '" onclick="show_detail(\'' + row['nik'] + '\')">' + '<p class="strikethrough">' + data + '</p></a>';
+               }else{
+                  return '<a href="#" class="detail" id="' + row['nik'] + '" onclick="show_detail(\'' + row['nik'] + '\')">' +  data + '</a>';
+               }
             },
             "targets": 0,
             "orderable": false

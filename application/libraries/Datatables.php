@@ -31,6 +31,7 @@ class Datatables
     private $where_in       = array();
     private $like           = array();
     private $or_like        = array();
+    private $not_like      = array();
     private $filter         = array();
     private $add_columns    = array();
     private $edit_columns   = array();
@@ -207,6 +208,14 @@ class Datatables
     {
         $this->like[] = array($key_condition, $val, $side);
         $this->ci->db->like($key_condition, $val, $side);
+        return $this;
+    }
+
+    //https://github.com/IgnitedDatatables/Ignited-Datatables/issues/105
+    public function not_like($key_condition, $val = null, $side = 'after')
+    {
+        $this->not_like[] = array($key_condition, $val, $side);
+        $this->ci->db->not_like($key_condition, $val, $side);
         return $this;
     }
 
@@ -466,6 +475,12 @@ class Datatables
             $this->ci->db->distinct($this->distinct);
             $this->ci->db->select($this->columns);
         }
+
+        //https://github.com/IgnitedDatatables/Ignited-Datatables/issues/105
+        foreach ($this->not_like as $val) {
+            $this->ci->db->not_like($val[0], $val[1], $val[2]);
+        }
+        
         $subquery = $this->ci->db->get_compiled_select($this->table);
         $countingsql = "SELECT COUNT(*) FROM (" . $subquery . ") SqueryAux";
         $query = $this->ci->db->query($countingsql);

@@ -346,7 +346,7 @@ class Api extends CI_Controller
                   '-',
                   LPAD(CAST((SELECT COUNT(*) FROM `dokumen_pendaftar` WHERE `pendaftar_id` = `a`.`id` AND `verifikasi` = 'ditolak') AS UNSIGNED),2,'0')
               ) AS dokumen,
-
+             (SELECT COUNT(*) FROM penerima_sebelumnya WHERE nik = a.nik) AS status_penerima_sebelumnya,
              a.status,
              a.status_akhir,
              a.email,

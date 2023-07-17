@@ -37,14 +37,22 @@ class Peserta extends CI_Controller
     {
         $user_id = $this->session->userdata('user_id');
 
-        $this->db->select('a.file_foto,b.nama,a.status AS status_lv1,a.status_akhir AS status_lv2');
+        $this->db->select('a.nik,a.file_foto,b.nama,b.notifikasi,b.tampilkan_notifikasi,
+                           a.status AS status_lv1,a.status_akhir AS status_lv2');
         $this->db->join('kategori b', 'a.kategori_id = b.id', 'left');
         $kat = $jenis_beasiswa = $this->db->get_where('pendaftar a', array('a.id' => $user_id))->row_array();
 
-        $output['kat_beasiswa'] = $kat['nama'];
-        $output['status_lv1']   = $kat['status_lv1'];
-        $output['status_lv2']   = $kat['status_lv2'];
-        $output['file_foto']    = $kat['file_foto'];
+        $cek_penerima_sebelumnya = $this->db->get_where('penerima_sebelumnya', array('nik' => $kat['nik']))->num_rows();
+
+        $output['penerima_sebelumnya'] = $cek_penerima_sebelumnya;
+        $output['kat_beasiswa']        = $kat['nama'];
+        $output['status_lv1']          = $kat['status_lv1'];
+        $output['status_lv2']          = $kat['status_lv2'];
+        $output['file_foto']           = $kat['file_foto'];
+        $output['notifikasi']          = array(
+            'isi'       => $kat['notifikasi'],
+            'tampilkan' => $kat['tampilkan_notifikasi'],
+        );
 
         $this->load->view('master.php', (array) $output);
     }
